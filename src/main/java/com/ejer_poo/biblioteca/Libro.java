@@ -4,6 +4,7 @@ public class Libro {
     private String codigo;
     private String titulo;
     private Autor autor; // 1 libro -> 1 autor
+    private Cliente prestador;
     private int año;
     private Boolean prestado;
 
