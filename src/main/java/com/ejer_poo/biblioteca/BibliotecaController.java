@@ -107,35 +107,6 @@ public class BibliotecaController {
         this.addLibro(libro);
     }
 
-    public ArrayList<Libro> getLibrosByAuthor1(String nombre) {
-        Autor autor = null;
-        for (Autor a : listaAutores) {
-            /* 
-            if (a.getNombre1().equals(nombre)) {
-                return a.getLibros();
-
-            }
-            */
-            return a.getLibros();
-        }
-        // return autor.getLibros();
-
-    }
-
-    public ArrayList<Libro> getLibrosByAuthores() {
-        for (Autor a: listaAutores){
-            ArrayList<Libro> libros = new ArrayList<>();
-            for (Libro libro : listaLibros) {
-                if (libro.getAutor().getNombre1().equals(a.getNombre1())) {
-                    libros.add(libro);
-                }
-            }
-            return libros;
-        }
- 
-    }
-
-
     public ArrayList<Libro> getLibrosByAuthor(String nombre) {
         ArrayList<Libro> libros = new ArrayList<>();
         for (Libro libro : listaLibros) {
