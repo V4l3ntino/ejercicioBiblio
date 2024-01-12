@@ -98,52 +98,26 @@ public class BibliotecaController {
             this.menu();
         }
 
-        System.out.print("Año: ");
-        int año = Integer.parseInt(System.console().readLine());        
+        boolean validarEntero = false;
+        Integer año = 0;
+        while (!validarEntero) {
+            System.out.print("Año: ");
+            String input = System.console().readLine();
+
+            
+            try {
+                año = Integer.parseInt(input);
+                validarEntero = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Por favor, introduzca un número válido para el año.");
+            }
+        }
+
 
         var libro = new Libro(newTitulo, newAutor, año); // 1 libro -> 1 autor
         newAutor.setLibros(libro); // 1 autor -> N libros
 
         this.addLibro(libro);
-    }
-
-    public ArrayList<Libro> getLibrosByAuthor1(String nombre) {
-        Autor autor = null;
-        for (Autor a : listaAutores) {
-            /* 
-            if (a.getNombre1().equals(nombre)) {
-                return a.getLibros();
-
-            }
-            */
-            return a.getLibros();
-        }
-        // return autor.getLibros();
-
-    }
-
-    public ArrayList<Libro> getLibrosByAuthores() {
-        for (Autor a: listaAutores){
-            ArrayList<Libro> libros = new ArrayList<>();
-            for (Libro libro : listaLibros) {
-                if (libro.getAutor().getNombre1().equals(a.getNombre1())) {
-                    libros.add(libro);
-                }
-            }
-            return libros;
-        }
- 
-    }
-
-
-    public ArrayList<Libro> getLibrosByAuthor(String nombre) {
-        ArrayList<Libro> libros = new ArrayList<>();
-        for (Libro libro : listaLibros) {
-            if (libro.getAutor().getNombre1().equals(nombre)) {
-                libros.add(libro);
-            }
-        }
-        return libros;
     }
 
     public void menu() {
