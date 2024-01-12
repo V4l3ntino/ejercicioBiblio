@@ -106,17 +106,7 @@ public class BibliotecaController {
 
         this.addLibro(libro);
     }
-
-    public ArrayList<Libro> getLibrosByAuthor(String nombre) {
-        ArrayList<Libro> libros = new ArrayList<>();
-        for (Libro libro : listaLibros) {
-            if (libro.getAutor().getNombre1().equals(nombre)) {
-                libros.add(libro);
-            }
-        }
-        return libros;
-    }
-
+    
     public void menu() {
         System.out.println("""
                 Menu Biblioteca
