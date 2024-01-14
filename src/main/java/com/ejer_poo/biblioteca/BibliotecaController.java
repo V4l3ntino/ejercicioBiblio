@@ -27,18 +27,26 @@ public class BibliotecaController {
         this.listaAutores.add(autor);
     }
 
-    public Boolean prestarLibro(String libro) {
-        //TODO
-        
-        return false;
-    }
+    public void prestarLibro(Libro libro) {
+        if (libro.getPrestado().equals(false)) {
+            libro.setPrestado(true);
+        }
+    } 
 
     public Boolean devolverLibro(String libro) {
         //TODO
         
         return false;
     }
-
+    public boolean validarLibro (String tituloLibro){
+        boolean aux = false;
+        for (Libro books : listaLibros) {
+            if (books.getTitulo().equals(tituloLibro)) {
+                aux = true;
+            }
+        }
+        return aux;
+    }
     public void listarLibros() {
         System.out.println("Lista de libros:");
         for (Libro libro : this.listaLibros) {
@@ -153,8 +161,30 @@ public class BibliotecaController {
             case "2" -> this.crearLibro();
             case "3" -> this.listarLibros();
             case "4" -> this.listarAutores();
+            
+            case "5" -> {
+                System.out.print("Introduzca el título: ");
+                String nombreLibro = System.console().readLine();
+                //validarLibro
+                boolean auxiliar = validarLibro(nombreLibro);
+                if (auxiliar == true) {
+                    for (Libro libro : listaLibros) {
+                        if (libro.getTitulo().equals(nombreLibro)) {
+                            if (libro.getPrestado() == true) {
+                                System.out.println("El libro ya está prestado");
+                            }else{
+                                this.prestarLibro(libro);
+                                System.out.println("El libro se le ha prestado Correctamente");
+                            }
+                            break;
+                        }
+                    }
+                }else{
+                    System.out.println("El libro no existe");
+                }
+
+            }
             /*
-            case "5" -> this.prestarLibro();
             case "6" -> this.devolverLibro();
             case "7" -> ;
             */

@@ -8,6 +8,8 @@ public class Libro {
     private int año;
     private Boolean prestado;
 
+    public Libro () {};
+
     public Libro(String titulo, Autor autor, int año) {
         setCodigo();
         setTitulo(titulo);
@@ -50,6 +52,9 @@ public class Libro {
 
     public void setPrestado(Boolean b) {
         this.prestado = b;
+    }
+    public Boolean getPrestado() {
+        return prestado;
     }
 
     public void imprimir() {
