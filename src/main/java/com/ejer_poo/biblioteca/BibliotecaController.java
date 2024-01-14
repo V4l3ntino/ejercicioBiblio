@@ -123,6 +123,7 @@ public class BibliotecaController {
         this.addAutor(autor);
     }
     public void crearCliente(){
+        System.out.println();
         System.out.println("\t REGISTRAR CLIENTE");
         System.out.print("[+] Nombre: ");
         String nombreCliente = System.console().readLine();
@@ -215,14 +216,15 @@ public class BibliotecaController {
             case "6" -> this.listarClientes();
             
             case "7" -> {
+                this.listarClientes();
                 System.out.println();
-                System.out.print("[*] Introduzca el nombre del cliente : ");
+                System.out.print("[+] Introduzca el nombre del cliente : ");
                 String nombreCliente = System.console().readLine();
                 //VALIDAR CLIENTE
                 boolean aux = validarCliente(nombreCliente);
                 if (aux == true){
                         //LIBRO
-                    System.out.print("[*] Introduzca el título del libro: ");
+                    System.out.print("[+] Introduzca el título del libro: ");
                     String nombreLibro = System.console().readLine();
                     //validarLibro
                     boolean auxiliar = validarLibro(nombreLibro);

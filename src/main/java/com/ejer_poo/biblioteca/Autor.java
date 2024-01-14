@@ -28,19 +28,19 @@ public class Autor {
     }
     
     public String getNombre1() {
-        return nombre1.toUpperCase();
+        return nombre1;
     }
 
     public String getApellido1() {
-        return apellido1.toUpperCase();
+        return apellido1;
     }
 
     public String getApellido2() {
-        return apellido2.toUpperCase();
+        return apellido2;
     }
     
     public String getEmail() {
-        return email.toLowerCase();
+        return email;
     }
 
     private void setId() {
@@ -48,19 +48,19 @@ public class Autor {
     }
 
     public void setNombre1(String nombre1) {
-        this.nombre1 = nombre1.toLowerCase();
+        this.nombre1 = nombre1;
     }
 
     public void setApellido1(String apellido1) {
-        this.apellido1 = apellido1.toLowerCase();
+        this.apellido1 = apellido1;
     }
 
     public void setApellido2(String apellido2) {
-        this.apellido2 = apellido2.toLowerCase();
+        this.apellido2 = apellido2;
     }
 
     public void setEmail(String email) {
-        this.email = email.toLowerCase();
+        this.email = email;
     }
 
     public void setLibros(Libro libro) {
