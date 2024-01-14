@@ -1,7 +1,7 @@
 package com.ejer_poo.biblioteca;
 
 public class Libro {
-    private String codigo;
+    private int codigo;
     private String titulo;
     private Autor autor; // 1 libro -> 1 autor
     private Cliente prestador;
@@ -18,7 +18,7 @@ public class Libro {
         setPrestado(false);
     }
 
-    public String getCodigo() {
+    public int getCodigo() {
         return this.codigo;
     }
 

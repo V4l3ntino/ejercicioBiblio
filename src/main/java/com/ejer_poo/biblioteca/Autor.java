@@ -28,39 +28,39 @@ public class Autor {
     }
     
     public String getNombre1() {
-        return nombre1;
+        return nombre1.toUpperCase();
     }
 
     public String getApellido1() {
-        return apellido1;
+        return apellido1.toUpperCase();
     }
 
     public String getApellido2() {
-        return apellido2;
+        return apellido2.toUpperCase();
     }
     
     public String getEmail() {
-        return email;
+        return email.toLowerCase();
     }
 
     private void setId() {
-        this.id = (int) Math.random() * 1000;
+        this.id = Utilidades.generarCodigoLibro();
     }
 
     public void setNombre1(String nombre1) {
-        this.nombre1 = nombre1;
+        this.nombre1 = nombre1.toLowerCase();
     }
 
     public void setApellido1(String apellido1) {
-        this.apellido1 = apellido1;
+        this.apellido1 = apellido1.toLowerCase();
     }
 
     public void setApellido2(String apellido2) {
-        this.apellido2 = apellido2;
+        this.apellido2 = apellido2.toLowerCase();
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        this.email = email.toLowerCase();
     }
 
     public void setLibros(Libro libro) {

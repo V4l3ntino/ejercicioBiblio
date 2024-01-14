@@ -60,41 +60,47 @@ public class BibliotecaController {
         return aux;
     }
     public void listarLibros() {
-        System.out.println("Lista de libros:");
+        System.out.println("\t LISTADO DE LIBROS");
+        System.out.println("========================================");
         for (Libro libro : this.listaLibros) {
-            System.out.println(libro.getTitulo());
+            System.out.println("LL%d -     %s (%d) - %s".formatted( libro.getCodigo(),libro.getTitulo(),libro.getAño(),libro.getAutor().getApellido2()));
         }
+        System.out.println("=========================================");
     }
 
     public void listarAutores() {
         System.out.println();
-        System.out.println("\t Lista de autores:");
-        System.out.println("\t ---------------");
-        System.out.println();
+        System.out.println("\t LISTADO DE AUTORES");
+        System.out.println("========================================");
         for (Autor autor : this.listaAutores) {
-            System.out.println("\t |   "+ autor.getFullName() +"   |");
+            System.out.println("%d -  %s, %s ".formatted(autor.getId(),autor.getFullName(),autor.getEmail()) );
         }
-        System.out.println("\t ---------------");
-        System.out.println();
+        System.out.println("========================================");
         System.out.println();
     }
 
     public void listarClientes(){
         System.out.println();
-        System.out.println("\t Lista de clientes:");
-        System.out.println("\t ---------------");
-        System.out.println();
+        System.out.println("\t LISTADO DE CLIENTES");
+        System.out.println("========================================");
+        System.out.println("    ID - NOMBRE");
         for (Cliente cliente : listaClientes) {
-            System.out.println("\t |   "+cliente.getNombre()+"   |");
+            System.out.println("[*] %d - %s ".formatted(cliente.getId(), cliente.getNombre()));
         }
-        System.out.println("\t ---------------");
-        System.out.println();
-        System.out.println();
+        System.out.println("========================================");
     }
 
     public void inicializar() {
-        
-        
+        var autor = new Autor("John", "Ronald", "Tolkien", "tolkien@mail.com");
+        var autor2 = new Autor("Juan", "Gomez", "Jurado", "jurado@mail.com");
+        var libro = new Libro("El señor de los anillos", autor, 1957);
+        var libro2 = new Libro("Reina Roja", autor2, 2018);
+        var cliente = new Cliente("defaultUser",null,null,null);
+        listaAutores.add(autor);
+        listaAutores.add(autor2);
+        listaLibros.add(libro);
+        listaLibros.add(libro2);
+        listaClientes.add(cliente);
     }
 
     public void crearAutor() {
