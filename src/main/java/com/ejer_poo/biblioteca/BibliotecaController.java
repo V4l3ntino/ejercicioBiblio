@@ -33,10 +33,11 @@ public class BibliotecaController {
         }
     } 
 
-    public Boolean devolverLibro(String libro) {
-        //TODO
+    public void devolverLibro(Libro libro) {
+        if (libro.getPrestado().equals(true)) {
+            libro.setPrestado(false);
+        }
         
-        return false;
     }
     public boolean validarLibro (String tituloLibro){
         boolean aux = false;
@@ -184,10 +185,30 @@ public class BibliotecaController {
                 }
 
             }
-            /*
-            case "6" -> this.devolverLibro();
-            case "7" -> ;
-            */
+            
+            case "6" -> {
+                System.out.print("Introduzca el título: ");
+                String nombreLibro = System.console().readLine();
+                //validarLibro
+                boolean auxiliar = validarLibro(nombreLibro);
+                if (auxiliar == true) {
+                    for (Libro libro : listaLibros) {
+                        if (libro.getTitulo().equals(nombreLibro)) {
+                            if (libro.getPrestado() == true) {
+                                this.devolverLibro(libro);
+                                System.out.println("El libro se ha devuelto correctamente");
+                            }else{
+                                System.out.println("El libro no ha sido prestado aún");
+                            }
+                            break;
+                        }
+                    }
+                }else{
+                    System.out.println("El libro no existe");
+                }
+            }
+            case "7" -> System.exit(0);
+            
         }
         //this.crearJSON();
         this.menu();
