@@ -13,6 +13,8 @@ public class BibliotecaController {
     private String nombre;
     private ArrayList<Libro> listaLibros = new ArrayList<>();
     private ArrayList<Autor> listaAutores = new ArrayList<>();
+    private ArrayList<Cliente> listaClientes = new ArrayList<>();
+    Cliente cliente = new Cliente();
     Scanner sc = new Scanner(System.in);
 
     public BibliotecaController(String nombre) {
@@ -48,6 +50,15 @@ public class BibliotecaController {
         }
         return aux;
     }
+    public boolean validarCliente (String nombreCliente){
+        boolean aux = false;
+        for (Cliente cliente : listaClientes){
+            if (cliente.getNombre().equals(nombreCliente)){
+                aux = true;
+            }
+        }
+        return aux;
+    }
     public void listarLibros() {
         System.out.println("Lista de libros:");
         for (Libro libro : this.listaLibros) {
@@ -59,6 +70,13 @@ public class BibliotecaController {
         System.out.println("Lista de autores:");
         for (Autor autor : this.listaAutores) {
             System.out.println(autor.getFullName());
+        }
+    }
+
+    public void listarClientes(){
+        System.out.println("Lista de clientes:");
+        for (Cliente cliente : listaClientes) {
+            System.out.println(cliente.getNombre());
         }
     }
 
@@ -85,6 +103,13 @@ public class BibliotecaController {
         var autor = new Autor(nombre, apellido1, apellido2, email);
 
         this.addAutor(autor);
+    }
+    public void crearCliente(){
+        System.out.println("\t REGISTRAR CLIENTE");
+        System.out.print("Nombre: ");
+        String nombreCliente = System.console().readLine();
+        cliente = new Cliente(nombreCliente,null,null,null);
+        listaClientes.add(cliente);
     }
 
     public void crearLibro() {
@@ -135,11 +160,13 @@ public class BibliotecaController {
                 *****************
                 1. Añadir autores
                 2. Añadir libro
-                3. Listar libro
-                4. Listar autores
-                5. Prestar libro
-                6. Devolver libro
-                7. Salir
+                3. Registrar cliente
+                4. Listar libro
+                5. Listar autores
+                6. Listar clientes
+                7. Prestar libro
+                8. Devolver libro
+                9. Salir
                 """);
         
         System.out.print("Elige una opción: ");
@@ -160,33 +187,47 @@ public class BibliotecaController {
                 this.crearAutor();
             }
             case "2" -> this.crearLibro();
-            case "3" -> this.listarLibros();
-            case "4" -> this.listarAutores();
+            case "3" -> this.crearCliente();
+            case "4" -> this.listarLibros();
+            case "5" -> this.listarAutores();
+            case "6" -> this.listarClientes();
             
-            case "5" -> {
-                System.out.print("Introduzca el título: ");
-                String nombreLibro = System.console().readLine();
-                //validarLibro
-                boolean auxiliar = validarLibro(nombreLibro);
-                if (auxiliar == true) {
-                    for (Libro libro : listaLibros) {
-                        if (libro.getTitulo().equals(nombreLibro)) {
-                            if (libro.getPrestado() == true) {
-                                System.out.println("El libro ya está prestado");
-                            }else{
-                                this.prestarLibro(libro);
-                                System.out.println("El libro se le ha prestado Correctamente");
+            case "7" -> {
+                System.out.print("Introduzca el nombre del cliente : ");
+                String nombreCliente = System.console().readLine();
+                //VALIDAR CLIENTE
+                boolean aux = validarCliente(nombreCliente);
+                if (aux == true){
+                        //LIBRO
+                    System.out.print("Introduzca el título del libro: ");
+                    String nombreLibro = System.console().readLine();
+                    //validarLibro
+                    boolean auxiliar = validarLibro(nombreLibro);
+                    if (auxiliar == true) {
+                        for (Libro libro : listaLibros) {
+                            if (libro.getTitulo().equals(nombreLibro)) {
+                                if (libro.getPrestado() == true) {
+                                    System.out.println("NO ES POSIBLE PRESTAR EL LIBRO \"%s\" PORQUE ESTA SIENDO PRESTADO AL CLIENTE: %s".formatted(libro.getTitulo(),libro.getPrestador().getNombre()));
+                                    // System.out.println("El libro ya está prestado");
+                                }else{
+                                    cliente.setLibroPrestado(libro);
+                                    libro.setPrestador(cliente);
+                                    this.prestarLibro(libro);
+                                    System.out.println("EL LIBRO SE HA PRESTADO CORRECTAMENTE AL CLIENTE "+ libro.getPrestador().getNombre());
+                                }
+                                break;
                             }
-                            break;
                         }
+                    }else{
+                        System.out.println("El libro no existe");
                     }
                 }else{
-                    System.out.println("El libro no existe");
+                    System.out.println("EL CLIENTE NO ESTA REGISTRADO");
                 }
 
             }
             
-            case "6" -> {
+            case "8" -> {
                 System.out.print("Introduzca el título: ");
                 String nombreLibro = System.console().readLine();
                 //validarLibro
@@ -207,7 +248,7 @@ public class BibliotecaController {
                     System.out.println("El libro no existe");
                 }
             }
-            case "7" -> System.exit(0);
+            case "9" -> System.exit(0);
             
         }
         //this.crearJSON();

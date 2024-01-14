@@ -57,6 +57,12 @@ public class Libro {
         return prestado;
     }
 
+    public void setPrestador(Cliente prestador) {
+        this.prestador = prestador;
+    }
+    public Cliente getPrestador() {
+        return prestador;
+    }
     public void imprimir() {
         
     }

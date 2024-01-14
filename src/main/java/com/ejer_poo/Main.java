@@ -5,7 +5,7 @@ import java.util.Scanner;
 import com.ejer_poo.biblioteca.BibliotecaController;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args)throws Exception {
         System.out.println("Hello world!");
 
         

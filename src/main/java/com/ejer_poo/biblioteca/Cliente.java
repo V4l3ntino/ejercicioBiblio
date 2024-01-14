@@ -7,6 +7,8 @@ public class Cliente {
     private String email;
     private Libro libroPrestado;
 
+    public Cliente(){};
+
     public Cliente(String nombre, String apellido1, String apellido2, String email) {
         this.nombre = nombre;
         this.apellido1 = apellido1;
