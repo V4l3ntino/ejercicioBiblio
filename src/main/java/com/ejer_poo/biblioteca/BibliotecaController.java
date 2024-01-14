@@ -67,17 +67,29 @@ public class BibliotecaController {
     }
 
     public void listarAutores() {
-        System.out.println("Lista de autores:");
+        System.out.println();
+        System.out.println("\t Lista de autores:");
+        System.out.println("\t ---------------");
+        System.out.println();
         for (Autor autor : this.listaAutores) {
-            System.out.println(autor.getFullName());
+            System.out.println("\t |   "+ autor.getFullName() +"   |");
         }
+        System.out.println("\t ---------------");
+        System.out.println();
+        System.out.println();
     }
 
     public void listarClientes(){
-        System.out.println("Lista de clientes:");
+        System.out.println();
+        System.out.println("\t Lista de clientes:");
+        System.out.println("\t ---------------");
+        System.out.println();
         for (Cliente cliente : listaClientes) {
-            System.out.println(cliente.getNombre());
+            System.out.println("\t |   "+cliente.getNombre()+"   |");
         }
+        System.out.println("\t ---------------");
+        System.out.println();
+        System.out.println();
     }
 
     public void inicializar() {
@@ -86,18 +98,18 @@ public class BibliotecaController {
     }
 
     public void crearAutor() {
-        System.out.println("Introduce los atributos del autor.");
+        System.out.println("\t Introduce los atributos del autor.");
         
-        System.out.print("Nombre: ");
+        System.out.print("[+] Nombre: ");
         String nombre = System.console().readLine();
 
-        System.out.print("Primer apellido: ");
+        System.out.print("[+] Primer apellido: ");
         String apellido1 = System.console().readLine();
 
-        System.out.print("Segundo apellido: ");
+        System.out.print("[+] Segundo apellido: ");
         String apellido2 = System.console().readLine();
 
-        System.out.print("Email: ");
+        System.out.print("[+] Email: ");
         String email = System.console().readLine();
         
         var autor = new Autor(nombre, apellido1, apellido2, email);
@@ -106,19 +118,19 @@ public class BibliotecaController {
     }
     public void crearCliente(){
         System.out.println("\t REGISTRAR CLIENTE");
-        System.out.print("Nombre: ");
+        System.out.print("[+] Nombre: ");
         String nombreCliente = System.console().readLine();
         cliente = new Cliente(nombreCliente,null,null,null);
         listaClientes.add(cliente);
     }
 
     public void crearLibro() {
-        System.out.println("Introduce los atributos del libro.");
+        System.out.println("\t Introduce los atributos del libro.");
         
-        System.out.print("Titulo: ");
+        System.out.print("[+] Titulo: ");
         String newTitulo = System.console().readLine();
 
-        System.out.print("Autor: ");
+        System.out.print("[+] Autor: ");
         String newNombre = System.console().readLine();
         Autor newAutor = null;
         for (Autor autor : listaAutores) {
@@ -128,14 +140,18 @@ public class BibliotecaController {
             }
         }
         if (newAutor == null) {
-            System.out.println("Autor introducido no existe");
+            System.out.println();
+            System.out.println("***************************");
+            System.out.println("* Autor introducido no existe *");
+            System.out.println("***************************");
+            System.out.println();
             this.menu();
         }
 
         boolean validarEntero = false;
         Integer año = 0;
         while (!validarEntero) {
-            System.out.print("Año: ");
+            System.out.print("[+] Año: ");
             String input = System.console().readLine();
 
             
@@ -143,7 +159,9 @@ public class BibliotecaController {
                 año = Integer.parseInt(input);
                 validarEntero = true;
             } catch (NumberFormatException e) {
-                System.out.println("Error: Por favor, introduzca un número válido para el año.");
+                System.out.println();
+                System.out.println("[!] Error: Por favor, introduzca un número válido para el año.");
+                System.out.println();
             }
         }
 
@@ -178,9 +196,7 @@ public class BibliotecaController {
         var a = new Scanner(System.in);
         var b = new Scanner(System.in);
         String opcionA = a.nextLine();
-*/
-        System.out.println("");
-        
+*/      
 
         switch(opcion) {
             case "1" -> {
@@ -193,13 +209,14 @@ public class BibliotecaController {
             case "6" -> this.listarClientes();
             
             case "7" -> {
-                System.out.print("Introduzca el nombre del cliente : ");
+                System.out.println();
+                System.out.print("[*] Introduzca el nombre del cliente : ");
                 String nombreCliente = System.console().readLine();
                 //VALIDAR CLIENTE
                 boolean aux = validarCliente(nombreCliente);
                 if (aux == true){
                         //LIBRO
-                    System.out.print("Introduzca el título del libro: ");
+                    System.out.print("[*] Introduzca el título del libro: ");
                     String nombreLibro = System.console().readLine();
                     //validarLibro
                     boolean auxiliar = validarLibro(nombreLibro);
@@ -207,28 +224,41 @@ public class BibliotecaController {
                         for (Libro libro : listaLibros) {
                             if (libro.getTitulo().equals(nombreLibro)) {
                                 if (libro.getPrestado() == true) {
-                                    System.out.println("NO ES POSIBLE PRESTAR EL LIBRO \"%s\" PORQUE ESTA SIENDO PRESTADO AL CLIENTE: %s".formatted(libro.getTitulo(),libro.getPrestador().getNombre()));
+                                    System.out.println("*************************************************************************************");
+                                    System.out.println("* NO ES POSIBLE PRESTAR EL LIBRO \"%s\" PORQUE ESTA SIENDO PRESTADO AL CLIENTE: %s".formatted(libro.getTitulo(),libro.getPrestador().getNombre()));
+                                    System.out.println("*************************************************************************************");
+                                    System.out.println();
                                     // System.out.println("El libro ya está prestado");
                                 }else{
                                     cliente.setLibroPrestado(libro);
                                     libro.setPrestador(cliente);
                                     this.prestarLibro(libro);
-                                    System.out.println("EL LIBRO SE HA PRESTADO CORRECTAMENTE AL CLIENTE "+ libro.getPrestador().getNombre());
+                                    System.out.println();
+                                    System.out.println("--------------------------------------------------------------------");
+                                    System.out.println("| EL LIBRO SE HA PRESTADO CORRECTAMENTE AL CLIENTE "+ libro.getPrestador().getNombre()+" |");
+                                    System.out.println("--------------------------------------------------------------------");
+                                    System.out.println();
                                 }
                                 break;
                             }
                         }
                     }else{
-                        System.out.println("El libro no existe");
+                        System.out.println();
+                        System.out.println("[-] El libro no existe");
+                        System.out.println();
                     }
                 }else{
-                    System.out.println("EL CLIENTE NO ESTA REGISTRADO");
+                    System.out.println();
+                    System.out.println(" *******************************");
+                    System.out.println("* EL CLIENTE NO ESTA REGISTRADO *");
+                    System.out.println(" *******************************");
+                    System.out.println();
                 }
 
             }
             
             case "8" -> {
-                System.out.print("Introduzca el título: ");
+                System.out.print("[*] Introduzca el título: ");
                 String nombreLibro = System.console().readLine();
                 //validarLibro
                 boolean auxiliar = validarLibro(nombreLibro);
@@ -237,15 +267,20 @@ public class BibliotecaController {
                         if (libro.getTitulo().equals(nombreLibro)) {
                             if (libro.getPrestado() == true) {
                                 this.devolverLibro(libro);
-                                System.out.println("El libro se ha devuelto correctamente");
+                                System.out.println();
+                                System.out.println("[+] El libro se ha devuelto correctamente");
                             }else{
-                                System.out.println("El libro no ha sido prestado aún");
+                                System.out.println();
+                                System.out.println("[-] El libro no ha sido prestado aún");
+                                System.out.println();
                             }
                             break;
                         }
                     }
                 }else{
-                    System.out.println("El libro no existe");
+                    System.out.println();
+                    System.out.println("[-] El libro no existe");
+                    System.out.println();
                 }
             }
             case "9" -> System.exit(0);
