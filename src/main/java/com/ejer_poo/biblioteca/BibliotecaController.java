@@ -1,13 +1,18 @@
 package com.ejer_poo.biblioteca;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class BibliotecaController {
     private String nombre;
@@ -178,6 +183,32 @@ public class BibliotecaController {
 
         this.addLibro(libro);
     }
+    public void crearJson(){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonStringAutores = gson.toJson(listaAutores);
+        String jsonStringClientes = gson.toJson(listaClientes);
+        String jsonStringLibros = gson.toJson(listaLibros);
+        // CREO EL ARCHIVO JSON DE AUTORES
+        System.out.println(jsonStringAutores);
+        try (PrintWriter autores = new PrintWriter(new File("./src/main/java/com/ejer_poo/biblioteca/json/autores.json"));) {
+            autores.write(jsonStringAutores);
+            
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
+        //CREO JSON DE CLIENTES
+        try (PrintWriter clientes = new PrintWriter(new File("./src/main/java/com/ejer_poo/biblioteca/json/clientes.json"));){
+            clientes.write(jsonStringClientes);
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
+        //CREO JSON DE LIBROS
+        try (PrintWriter libros = new PrintWriter(new File("./src/main/java/com/ejer_poo/biblioteca/json/libros.json"));){
+            libros.write(jsonStringLibros);
+        } catch (Exception e) {
+            System.out.println("ERROR");
+        }
+    }
 
     public void menu() {
         System.out.println("""
@@ -291,10 +322,11 @@ public class BibliotecaController {
                     System.out.println();
                 }
             }
-            case "9" -> System.exit(0);
+            case "9" -> {
+                this.crearJson();
+                System.exit(0);}
             
         }
-        //this.crearJSON();
         this.menu();
     }
 }

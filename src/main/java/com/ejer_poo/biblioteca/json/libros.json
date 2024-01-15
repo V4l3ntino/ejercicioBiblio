@@ -1,0 +1,30 @@
+[
+  {
+    "codigo": 325,
+    "titulo": "El señor de los anillos",
+    "autor": {
+      "id": 113,
+      "nombre1": "John",
+      "apellido1": "Ronald",
+      "apellido2": "Tolkien",
+      "email": "tolkien@mail.com",
+      "libros": []
+    },
+    "año": 1957,
+    "prestado": false
+  },
+  {
+    "codigo": 804,
+    "titulo": "Reina Roja",
+    "autor": {
+      "id": 522,
+      "nombre1": "Juan",
+      "apellido1": "Gomez",
+      "apellido2": "Jurado",
+      "email": "jurado@mail.com",
+      "libros": []
+    },
+    "año": 2018,
+    "prestado": false
+  }
+]

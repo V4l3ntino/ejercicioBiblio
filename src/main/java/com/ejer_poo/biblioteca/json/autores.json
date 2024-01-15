@@ -1,0 +1,26 @@
+[
+  {
+    "id": 113,
+    "nombre1": "John",
+    "apellido1": "Ronald",
+    "apellido2": "Tolkien",
+    "email": "tolkien@mail.com",
+    "libros": []
+  },
+  {
+    "id": 522,
+    "nombre1": "Juan",
+    "apellido1": "Gomez",
+    "apellido2": "Jurado",
+    "email": "jurado@mail.com",
+    "libros": []
+  },
+  {
+    "id": 74,
+    "nombre1": "jose",
+    "apellido1": "garcia",
+    "apellido2": "perez",
+    "email": "jose@email",
+    "libros": []
+  }
+]
