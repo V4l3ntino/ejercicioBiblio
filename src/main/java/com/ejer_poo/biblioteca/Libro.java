@@ -10,13 +10,13 @@ public class Libro {
 
     public Libro () {};
 
-    public Libro(String titulo, Autor autor, int año, Boolean prestado) {
+    public Libro(String titulo, Autor autor, int año, Boolean prestado, Cliente prestador) {
         setCodigo();
-        setPrestador(null);
         setTitulo(titulo);
         setAutor(autor);
         setAño(año);
         setPrestado(prestado);
+        setPrestador(prestador);
     }
 
     public int getCodigo() {

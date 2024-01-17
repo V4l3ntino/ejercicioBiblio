@@ -54,5 +54,61 @@
     },
     "año": 1888,
     "prestado": false
+  },
+  {
+    "codigo": 793,
+    "titulo": "El señor de los anillos",
+    "autor": {
+      "id": 210,
+      "nombre1": "John",
+      "apellido1": "Ronald",
+      "apellido2": "Tolkien",
+      "email": "tolkien@mail.com",
+      "libros": []
+    },
+    "año": 1957,
+    "prestado": false
+  },
+  {
+    "codigo": 527,
+    "titulo": "Reina Roja",
+    "autor": {
+      "id": 665,
+      "nombre1": "Juan",
+      "apellido1": "Gomez",
+      "apellido2": "Jurado",
+      "email": "jurado@mail.com",
+      "libros": []
+    },
+    "año": 2018,
+    "prestado": false
+  },
+  {
+    "codigo": 803,
+    "titulo": "El señor de los anillos",
+    "autor": {
+      "id": 742,
+      "nombre1": "John",
+      "apellido1": "Ronald",
+      "apellido2": "Tolkien",
+      "email": "tolkien@mail.com",
+      "libros": []
+    },
+    "año": 1957,
+    "prestado": false
+  },
+  {
+    "codigo": 89,
+    "titulo": "Reina Roja",
+    "autor": {
+      "id": 247,
+      "nombre1": "Juan",
+      "apellido1": "Gomez",
+      "apellido2": "Jurado",
+      "email": "jurado@mail.com",
+      "libros": []
+    },
+    "año": 2018,
+    "prestado": false
   }
 ]

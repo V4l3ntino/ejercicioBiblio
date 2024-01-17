@@ -70,5 +70,53 @@
     "apellido2": "Jurado",
     "email": "jurado@mail.com",
     "libros": []
+  },
+  {
+    "id": 792,
+    "nombre1": "John",
+    "apellido1": "Ronald",
+    "apellido2": "Tolkien",
+    "email": "tolkien@mail.com",
+    "libros": []
+  },
+  {
+    "id": 261,
+    "nombre1": "Juan",
+    "apellido1": "Gomez",
+    "apellido2": "Jurado",
+    "email": "jurado@mail.com",
+    "libros": []
+  },
+  {
+    "id": 210,
+    "nombre1": "John",
+    "apellido1": "Ronald",
+    "apellido2": "Tolkien",
+    "email": "tolkien@mail.com",
+    "libros": []
+  },
+  {
+    "id": 665,
+    "nombre1": "Juan",
+    "apellido1": "Gomez",
+    "apellido2": "Jurado",
+    "email": "jurado@mail.com",
+    "libros": []
+  },
+  {
+    "id": 742,
+    "nombre1": "John",
+    "apellido1": "Ronald",
+    "apellido2": "Tolkien",
+    "email": "tolkien@mail.com",
+    "libros": []
+  },
+  {
+    "id": 247,
+    "nombre1": "Juan",
+    "apellido1": "Gomez",
+    "apellido2": "Jurado",
+    "email": "jurado@mail.com",
+    "libros": []
   }
 ]

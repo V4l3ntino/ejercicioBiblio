@@ -10,13 +10,13 @@ public class Cliente {
 
     public Cliente(){};
 
-    public Cliente(String nombre, String apellido1, String apellido2, String email) {
+    public Cliente(String nombre, String apellido1, String apellido2, String email, Libro libro) {
         setId();
-        setLibroPrestado(null);
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.email = email;
+        setLibroPrestado(libro);
     }
     public void setId() {
         this.id = Utilidades.generarCodigoLibro();

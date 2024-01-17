@@ -24,6 +24,7 @@ public class BibliotecaController {
     private ArrayList<Autor> listaAutores = new ArrayList<>();
     private ArrayList<Cliente> listaClientes = new ArrayList<>();
     Cliente cliente = new Cliente();
+    Libro libroG = new Libro();
     Scanner sc = new Scanner(System.in);
     public BibliotecaController(){}
 
@@ -62,6 +63,7 @@ public class BibliotecaController {
         for (Libro books : listaLibros) {
             if (books.getTitulo().equals(tituloLibro)) {
                 aux = true;
+                libroG = books;
             }
         }
         return aux;
@@ -110,9 +112,9 @@ public class BibliotecaController {
     public void inicializar() {
         var autor = new Autor("John", "Ronald", "Tolkien", "tolkien@mail.com");
         var autor2 = new Autor("Juan", "Gomez", "Jurado", "jurado@mail.com");
-        var libro = new Libro("El señor de los anillos", autor, 1957,false);
-        var libro2 = new Libro("Reina Roja", autor2, 2018,false);
-        var cliente = new Cliente("defaultUser",null,null,null);
+        var libro = new Libro("El señor de los anillos", autor, 1957,false,null);
+        var libro2 = new Libro("Reina Roja", autor2, 2018,false,null);
+        var cliente = new Cliente("defaultUser",null,null,null,null);
         listaAutores.add(autor);
         listaAutores.add(autor2);
         listaLibros.add(libro);
@@ -150,8 +152,53 @@ public class BibliotecaController {
         String ape2 = System.console().readLine();
         System.out.print("[+] Email: ");
         String email = System.console().readLine();
-        cliente = new Cliente(nombreCliente,ape1,ape2,email);
-        listaClientes.add(cliente);
+        
+        boolean validarEntero = false;
+        boolean option = false;
+        int opcion = 5;
+        while (!validarEntero) {
+            System.out.println("[+] Prestar libro?(1 = si,0 = no): ");
+                String input2 = System.console().readLine();
+            try {
+                opcion = Integer.parseInt(input2);
+                switch (opcion) {
+                    case 1:
+                        option = true;
+                        validarEntero = true;
+                        break;
+                    case 0:
+                        option = false;
+                        validarEntero = true;
+                        break;
+                    default:
+                        System.out.println("Elige 1 o 0;");
+                        validarEntero = false;
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("SOLO PUEDES ELEGIR 1/0");
+            }
+        }
+        //PRESTAR LIBRO
+        if (option == true) {
+            System.out.print("Introduce el nombre del libro: ");
+            String nombreLibro = System.console().readLine();
+            boolean aux = validarLibro(nombreLibro);
+            if (aux == true) {
+                cliente = new Cliente(nombreCliente,ape1,ape2,email,libroG);
+                listaClientes.add(cliente);
+                libroG.setPrestado(true);
+                libroG.setPrestador(cliente);
+                System.out.println("EL LIBRO %s SE HA PRESTADO CORRECTAMENTE AL CLIENTE %s".formatted(cliente.getLibroPrestado().getTitulo(),libroG.getPrestador().getNombre()));
+
+            }else{
+                System.out.println("El libro no existe");
+            }
+        } else {
+            cliente = new Cliente(nombreCliente,ape1,ape2,email,null);
+            listaClientes.add(cliente);
+            
+        }
     }
 
     public void crearLibro() {
@@ -180,26 +227,66 @@ public class BibliotecaController {
 
         boolean validarEntero = false;
         Integer año = 0;
+        boolean option = false;
+        int opcion = 5;
         while (!validarEntero) {
             System.out.print("[+] Año: ");
             String input = System.console().readLine();
-
-            
             try {
                 año = Integer.parseInt(input);
-                validarEntero = true;
             } catch (NumberFormatException e) {
                 System.out.println();
-                System.out.println("[!] Error: Por favor, introduzca un número válido para el año.");
+                System.out.println("[!] Error: Por favor, introduzca un número válido.");
                 System.out.println();
             }
+            boolean validarEnteroEntero = false;
+            while (!validarEnteroEntero) {
+                System.out.println("[+] Prestar libro?(1 = si,0 = no): ");
+                String input2 = System.console().readLine();
+            try {
+                opcion = Integer.parseInt(input2);
+                switch (opcion) {
+                    case 1:
+                        option = true;
+                        validarEnteroEntero = true;
+                        validarEntero = true;
+                        break;
+                    case 0:
+                        option = false;
+                        validarEnteroEntero = true;
+                        validarEntero = true;
+                        break;
+                    default:
+                        System.out.println("Elige 1 o 0;");
+                        validarEnteroEntero = false;
+                        validarEntero = false;
+                        break;
+                }
+            } catch (Exception e) {
+                System.out.println("SOLO PUEDES ELEGIR 1/0");
+            }
+            }
         }
+        //PRESTAR LIBRO
+        if (option == true) {
+            System.out.print("Introduce el nombre del cliente que va a ser prestado: ");
+            String nombreCliente = System.console().readLine();
+            boolean aux = validarCliente(nombreCliente);
+            if (aux == true) {
+                var libro = new Libro(newTitulo, newAutor, año,option,cliente); // 1 libro -> 1 autor
+                cliente.setLibroPrestado(libro);
+                newAutor.setLibros(libro); // 1 autor -> N libros
+                this.addLibro(libro);
+                System.out.println("EL LIBRO SE HA PRESTADO CORRECTAMENTE AL CLIENTE %s".formatted(libro.getPrestador().getNombre()));
 
-
-        var libro = new Libro(newTitulo, newAutor, año,false); // 1 libro -> 1 autor
-        newAutor.setLibros(libro); // 1 autor -> N libros
-
-        this.addLibro(libro);
+            }else{
+                System.out.println("El cliente no existe");
+            }
+        } else {
+            var libro = new Libro(newTitulo, newAutor, año,option,null); // 1 libro -> 1 autor
+            newAutor.setLibros(libro); // 1 autor -> N libros
+            this.addLibro(libro);
+        }
     }
     public ArrayList<Autor> leerJsonAutor(){
         Gson gson = new Gson();
