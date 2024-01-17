@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
@@ -13,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.lang.reflect.Type;
+import com.google.gson.reflect.TypeToken;
 
 public class BibliotecaController {
     private String nombre;
@@ -23,6 +27,7 @@ public class BibliotecaController {
     Scanner sc = new Scanner(System.in);
 
     public BibliotecaController(String nombre) {
+        this.leerJson().stream().forEach((i) -> this.listaAutores.add(i));
         this.nombre = nombre;
     }
 
@@ -182,6 +187,19 @@ public class BibliotecaController {
         newAutor.setLibros(libro); // 1 autor -> N libros
 
         this.addLibro(libro);
+    }
+    public ArrayList<Autor> leerJson(){
+        Gson gson = new Gson();
+        String rutaFile = "src/main/java/com/ejer_poo/biblioteca/json/autores.json";
+        String json = "";
+        try {
+            json = Files.readString(Paths.get(rutaFile));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        Type autorType = new TypeToken<ArrayList<Autor>>() {}.getType();
+        ArrayList<Autor> lista = gson.fromJson(json, autorType);
+        return lista;
     }
     public void crearJson(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
