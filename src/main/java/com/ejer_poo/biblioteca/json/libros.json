@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "codigo": 812,
+    "titulo": "El señor de los anillos",
+    "autor": {
+      "id": 40,
+      "nombre1": "John",
+      "apellido1": "Ronald",
+      "apellido2": "Tolkien",
+      "email": "tolkien@mail.com",
+      "libros": []
+    },
+    "año": 1957,
+    "prestado": false
+  },
+  {
+    "codigo": 913,
+    "titulo": "Reina Roja",
+    "autor": {
+      "id": 245,
+      "nombre1": "Juan",
+      "apellido1": "Gomez",
+      "apellido2": "Jurado",
+      "email": "jurado@mail.com",
+      "libros": []
+    },
+    "año": 2018,
+    "prestado": false
+  }, 
+  {
+    "codigo": 812,
+    "titulo": "EL SEÑOR DE LAS MANZANAS",
+    "autor": {
+      "id": 40,
+      "nombre1": "manolo",
+      "apellido1": "carrillo",
+      "apellido2": "sanchez",
+      "email": "manolo@email",
+      "libros": []
+    },
+    "año": 1999,
+    "prestado": false
+  },
+  {
+    "codigo": 812,
+    "titulo": "EL SEÑOR DE LAS PERAS",
+    "autor": {
+      "id": 40,
+      "nombre1": "Pepe",
+      "apellido1": "Sancho",
+      "apellido2": "Paza",
+      "email": "pepe@mail.com",
+      "libros": []
+    },
+    "año": 1888,
+    "prestado": false
+  }
+]

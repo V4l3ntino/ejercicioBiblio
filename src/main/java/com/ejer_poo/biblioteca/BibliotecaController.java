@@ -27,9 +27,12 @@ public class BibliotecaController {
     Scanner sc = new Scanner(System.in);
 
     public BibliotecaController(String nombre) {
-        this.leerJson().stream().forEach((i) -> this.listaAutores.add(i));
+        this.leerJsonAutor().stream().forEach((i) -> this.listaAutores.add(i));
+        this.leerJsonLibro().stream().forEach((i) -> this.listaLibros.add(i));
+        this.leerJsonCliente().stream().forEach((i) -> this.listaClientes.add(i));
         this.nombre = nombre;
     }
+
 
     public void addLibro(Libro libro) {
         this.listaLibros.add(libro);
@@ -188,7 +191,7 @@ public class BibliotecaController {
 
         this.addLibro(libro);
     }
-    public ArrayList<Autor> leerJson(){
+    public ArrayList<Autor> leerJsonAutor(){
         Gson gson = new Gson();
         String rutaFile = "src/main/java/com/ejer_poo/biblioteca/json/autores.json";
         String json = "";
@@ -200,6 +203,33 @@ public class BibliotecaController {
         Type autorType = new TypeToken<ArrayList<Autor>>() {}.getType();
         ArrayList<Autor> lista = gson.fromJson(json, autorType);
         return lista;
+    }
+    public ArrayList<Libro> leerJsonLibro(){
+        Gson gson = new Gson();
+        String rutaFile = "src/main/java/com/ejer_poo/biblioteca/json/libros.json";
+        String json = "";
+        try {
+            json = Files.readString(Paths.get(rutaFile));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        Type libroType = new TypeToken<ArrayList<Libro>>() {}.getType();
+        ArrayList<Libro> lista = gson.fromJson(json, libroType);
+        return lista;
+    }
+    public ArrayList<Cliente> leerJsonCliente(){
+        Gson gson = new Gson();
+        String rutaFile = "src/main/java/com/ejer_poo/biblioteca/json/clientes.json";
+        String json = "";
+        try {
+            json = Files.readString(Paths.get(rutaFile));
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        Type clienteType = new TypeToken<ArrayList<Cliente>>() {}.getType();
+        ArrayList<Cliente> lista = gson.fromJson(json, clienteType);
+        return lista;
+
     }
     public void crearJson(){
         Gson gson = new GsonBuilder().setPrettyPrinting().create();

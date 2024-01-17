@@ -54,5 +54,21 @@
     "apellido2": "garcia",
     "email": "nerea@email",
     "libros": []
+  },
+  {
+    "id": 40,
+    "nombre1": "John",
+    "apellido1": "Ronald",
+    "apellido2": "Tolkien",
+    "email": "tolkien@mail.com",
+    "libros": []
+  },
+  {
+    "id": 245,
+    "nombre1": "Juan",
+    "apellido1": "Gomez",
+    "apellido2": "Jurado",
+    "email": "jurado@mail.com",
+    "libros": []
   }
 ]

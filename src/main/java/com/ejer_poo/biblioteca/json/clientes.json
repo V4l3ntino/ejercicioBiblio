@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "id": 19,
+    "nombre": "defaultUser"
+  },
+  {
+    "id": 445,
+    "nombre": "Paco"
+  },
+  {
+    "id": 303,
+    "nombre": "German"
+  },
+  {
+    "id": 734,
+    "nombre": "Jose"
+  },
+  {
+    "id": 982,
+    "nombre": "Valentino"
+  },
+  {
+    "id": 112,
+    "nombre": "Ivan"
+  },
+  {
+    "id": 10,
+    "nombre": "Cristian"
+  },
+  {
+    "id": 293,
+    "nombre": "Manolo"
+  }
+]
