@@ -12,6 +12,7 @@ public class Cliente {
 
     public Cliente(String nombre, String apellido1, String apellido2, String email) {
         setId();
+        setLibroPrestado(null);
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;

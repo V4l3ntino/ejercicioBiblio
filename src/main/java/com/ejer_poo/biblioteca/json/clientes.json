@@ -30,5 +30,12 @@
   {
     "id": 293,
     "nombre": "Manolo"
+  },
+  {
+    "id": 816,
+    "nombre": "manolo",
+    "apellido1": "manu",
+    "apellido2": "manuelito",
+    "email": "manu@manu"
   }
 ]

@@ -25,6 +25,7 @@ public class BibliotecaController {
     private ArrayList<Cliente> listaClientes = new ArrayList<>();
     Cliente cliente = new Cliente();
     Scanner sc = new Scanner(System.in);
+    public BibliotecaController(){}
 
     public BibliotecaController(String nombre) {
         this.leerJsonAutor().stream().forEach((i) -> this.listaAutores.add(i));
@@ -45,6 +46,8 @@ public class BibliotecaController {
     public void prestarLibro(Libro libro) {
         if (libro.getPrestado().equals(false)) {
             libro.setPrestado(true);
+            cliente.setLibroPrestado(libro);
+            libro.setPrestador(cliente);
         }
     } 
 
@@ -68,6 +71,7 @@ public class BibliotecaController {
         for (Cliente cliente : listaClientes){
             if (cliente.getNombre().equals(nombreCliente)){
                 aux = true;
+                this.cliente = cliente;
             }
         }
         return aux;
@@ -106,8 +110,8 @@ public class BibliotecaController {
     public void inicializar() {
         var autor = new Autor("John", "Ronald", "Tolkien", "tolkien@mail.com");
         var autor2 = new Autor("Juan", "Gomez", "Jurado", "jurado@mail.com");
-        var libro = new Libro("El señor de los anillos", autor, 1957);
-        var libro2 = new Libro("Reina Roja", autor2, 2018);
+        var libro = new Libro("El señor de los anillos", autor, 1957,false);
+        var libro2 = new Libro("Reina Roja", autor2, 2018,false);
         var cliente = new Cliente("defaultUser",null,null,null);
         listaAutores.add(autor);
         listaAutores.add(autor2);
@@ -140,7 +144,13 @@ public class BibliotecaController {
         System.out.println("\t REGISTRAR CLIENTE");
         System.out.print("[+] Nombre: ");
         String nombreCliente = System.console().readLine();
-        cliente = new Cliente(nombreCliente,null,null,null);
+        System.out.print("[+] Apellido: ");
+        String ape1 = System.console().readLine();
+        System.out.print("[+] Apellido2 :");
+        String ape2 = System.console().readLine();
+        System.out.print("[+] Email: ");
+        String email = System.console().readLine();
+        cliente = new Cliente(nombreCliente,ape1,ape2,email);
         listaClientes.add(cliente);
     }
 
@@ -186,7 +196,7 @@ public class BibliotecaController {
         }
 
 
-        var libro = new Libro(newTitulo, newAutor, año); // 1 libro -> 1 autor
+        var libro = new Libro(newTitulo, newAutor, año,false); // 1 libro -> 1 autor
         newAutor.setLibros(libro); // 1 autor -> N libros
 
         this.addLibro(libro);
@@ -280,8 +290,6 @@ public class BibliotecaController {
                             System.out.println();
                             // System.out.println("El libro ya está prestado");
                         }else{
-                            cliente.setLibroPrestado(libro);
-                            libro.setPrestador(cliente);
                             this.prestarLibro(libro);
                             System.out.println();
                             System.out.println("--------------------------------------------------------------------");
@@ -370,7 +378,7 @@ public class BibliotecaController {
             case "7" -> this.caso7();
             case "8" -> this.caso8();
             case "9" -> {
-                // this.crearJson();
+                this.crearJson();
                 System.exit(0);}
             
         }
