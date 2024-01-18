@@ -9,7 +9,7 @@ public class Cliente {
     private String apellido2;
     private String email;
     private Libro libroPrestado;
-    ArrayList<Libro> listaLibrosPrestados = new ArrayList<>();
+    //ArrayList<Libro> listaLibrosPrestados = new ArrayList<>();
 
     public Cliente(){};
 
@@ -58,16 +58,16 @@ public class Cliente {
         this.email = email;
     }
 
-    public ArrayList<Libro> getLibroPrestado() {
-        return this.listaLibrosPrestados;
-    }
+    // public ArrayList<Libro> getLibroPrestado() {
+    //     return this.listaLibrosPrestados;
+    // }
 
-    public void setLibroPrestado(Libro libroPrestado) {
-        listaLibrosPrestados.add(libroPrestado);
-    }
-    public void listarLibros(){
-        for (Libro libro : listaLibrosPrestados) {
-            System.out.print("Libors: %s, ".formatted(libro.getTitulo()));
-        }
-    }
+    // public void setLibroPrestado(Libro libroPrestado) {
+    //     listaLibrosPrestados.add(libroPrestado);
+    // }
+    // public void listarLibros(){
+    //     for (Libro libro : listaLibrosPrestados) {
+    //         System.out.print("Libors: %s, ".formatted(libro.getTitulo()));
+    //     }
+    // }
 }

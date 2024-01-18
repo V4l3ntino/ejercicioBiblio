@@ -10,14 +10,12 @@
       "email": "manu@email"
     },
     "prestador": {
-      "id": 0,
-      "listaLibrosPrestados": []
+      "id": 0
     },
     "año": 2001,
     "prestado": false,
     "cliente": {
-      "id": 0,
-      "listaLibrosPrestados": []
+      "id": 0
     }
   },
   {
@@ -31,14 +29,16 @@
       "email": "manu@email"
     },
     "prestador": {
-      "id": 0,
-      "listaLibrosPrestados": []
+      "id": 895,
+      "nombre": "Valentino",
+      "apellido1": "Hontar",
+      "apellido2": "Dos",
+      "email": "valen@email"
     },
     "año": 2001,
-    "prestado": false,
+    "prestado": true,
     "cliente": {
-      "id": 0,
-      "listaLibrosPrestados": []
+      "id": 0
     }
   },
   {
@@ -53,14 +53,32 @@
     },
     "prestador": {
       "id": 303,
-      "nombre": "German",
-      "listaLibrosPrestados": []
+      "nombre": "German"
     },
     "año": 1999,
     "prestado": true,
     "cliente": {
-      "id": 0,
-      "listaLibrosPrestados": []
+      "id": 0
+    }
+  },
+  {
+    "codigo": 877,
+    "titulo": "Cocacola",
+    "autor": {
+      "id": 233,
+      "nombre1": "Juan",
+      "apellido1": "Gomez",
+      "apellido2": "Jurado",
+      "email": "jurado@mail.com"
+    },
+    "prestador": {
+      "id": 303,
+      "nombre": "German"
+    },
+    "año": 1999,
+    "prestado": true,
+    "cliente": {
+      "id": 0
     }
   }
 ]
