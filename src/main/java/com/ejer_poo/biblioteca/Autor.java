@@ -10,6 +10,7 @@ public class Autor {
     private String email;
     ArrayList<Libro> listaLibros = new ArrayList<>(); // 1 autor -> N libros
 
+    public Autor (){}
     public Autor(String nombre, String ape1, String ape2, String email) {
         this.setId();
         this.setNombre1(nombre);
@@ -42,8 +43,10 @@ public class Autor {
     public String getEmail() {
         return email;
     }
-
-    private void setId() {
+    public void setIdManual(int id){
+        this.id = id;
+    }
+    public void setId() {
         this.id = Utilidades.generarCodigoLibro();
     }
 

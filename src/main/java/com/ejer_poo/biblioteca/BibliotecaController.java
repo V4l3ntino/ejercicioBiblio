@@ -2,6 +2,8 @@ package com.ejer_poo.biblioteca;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -15,23 +17,31 @@ import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+
 import java.lang.reflect.Type;
 import com.google.gson.reflect.TypeToken;
 
 public class BibliotecaController {
     private String nombre;
-    private ArrayList<Libro> listaLibros = new ArrayList<>();
+    public ArrayList<Libro> listaLibros = new ArrayList<>();
     private ArrayList<Autor> listaAutores = new ArrayList<>();
     private ArrayList<Cliente> listaClientes = new ArrayList<>();
-    Cliente cliente = new Cliente();
+    Cliente clienteG = new Cliente();
     Libro libroG = new Libro();
+    Autor autorG = new Autor();
     Scanner sc = new Scanner(System.in);
     public BibliotecaController(){}
 
     public BibliotecaController(String nombre) {
         this.leerJsonAutor().stream().forEach((i) -> this.listaAutores.add(i));
-        this.leerJsonLibro().stream().forEach((i) -> this.listaLibros.add(i));
         this.leerJsonCliente().stream().forEach((i) -> this.listaClientes.add(i));
+        this.leerJsonLibro().stream().forEach((i) -> this.listaLibros.add(i));
         this.nombre = nombre;
     }
 
@@ -48,7 +58,7 @@ public class BibliotecaController {
         if (libro.getPrestado().equals(false)) {
             libro.setPrestado(true);
             //cliente.setLibroPrestado(libro);
-            libro.setPrestador(cliente);
+            libro.setPrestador(clienteG);
         }
     } 
 
@@ -74,7 +84,7 @@ public class BibliotecaController {
         for (Cliente cliente : listaClientes){
             if (cliente.getNombre().equals(nombreCliente)){
                 aux = true;
-                this.cliente = cliente;
+                this.clienteG = cliente;
             }
         }
         return aux;
@@ -83,7 +93,7 @@ public class BibliotecaController {
         System.out.println("\t LISTADO DE LIBROS");
         System.out.println("========================================");
         for (Libro libro : this.listaLibros) {
-            System.out.println("LL%d -     %s (%d) - %s".formatted( libro.getCodigo(),libro.getTitulo(),libro.getAño(),libro.getAutor().getApellido2()));
+            System.out.println("LL%d -     %s (%d) - %s".formatted( libro.getCodigo(),libro.getTitulo(),libro.getAño(),libro.getAutor().getNombre1()));
         }
         System.out.println("=========================================");
     }
@@ -188,10 +198,10 @@ public class BibliotecaController {
                 String nombreLibro = System.console().readLine();
                 boolean aux = validarLibro(nombreLibro);
                 if (aux == true) {
-                    cliente = new Cliente(nombreCliente,ape1,ape2,email);
-                    listaClientes.add(cliente);
+                    clienteG = new Cliente(nombreCliente,ape1,ape2,email);
+                    listaClientes.add(clienteG);
                     libroG.setPrestado(true);
-                    libroG.setPrestador(cliente);
+                    libroG.setPrestador(clienteG);
                     System.out.println("EL LIBRO %s SE HA PRESTADO CORRECTAMENTE AL CLIENTE %s".formatted(libroG.getTitulo().toUpperCase(),libroG.getPrestador().getNombre().toUpperCase()));
                     comprobar = true;
     
@@ -201,8 +211,8 @@ public class BibliotecaController {
                 }
             }
         } else {
-            cliente = new Cliente(nombreCliente,ape1,ape2,email);
-            listaClientes.add(cliente);
+            clienteG = new Cliente(nombreCliente,ape1,ape2,email);
+            listaClientes.add(clienteG);
             
         }
     }
@@ -281,7 +291,7 @@ public class BibliotecaController {
                 String nombreCliente = System.console().readLine();
                 boolean aux = validarCliente(nombreCliente);
                 if (aux == true) {
-                    var libro = new Libro(newTitulo, newAutor, año,option,cliente); // 1 libro -> 1 autor
+                    var libro = new Libro(newTitulo, newAutor, año,option,clienteG); // 1 libro -> 1 autor
                     //cliente.setLibroPrestado(libro);
                     //newAutor.setLibros(libro); // 1 autor -> N libros
                     this.addLibro(libro);
@@ -300,6 +310,32 @@ public class BibliotecaController {
         }
     }
     public ArrayList<Autor> leerJsonAutor(){
+        // File input = new File("./src/main/java/com/ejer_poo/biblioteca/json/autores.json");
+        // ArrayList<Autor> listaDeAutores = new ArrayList<>(); 
+        // try {
+        //     JsonElement elemento = JsonParser.parseReader(new FileReader(input));
+        //     JsonArray listaObjetos = elemento.getAsJsonArray();
+        //     for (JsonElement element : listaObjetos) {
+        //         JsonObject objeto = element.getAsJsonObject();
+        //         int id = objeto.get("id").getAsInt();
+        //         String name = objeto.get("nombre1").getAsString();
+        //         String surname1 = objeto.get("apellido1").getAsString();
+        //         String surname2 = objeto.get("apellido2").getAsString();
+        //         String email = objeto.get("email").getAsString();
+        //         Autor autor = new Autor(name, surname1, surname2, email);
+        //         autor.setIdManual(id);
+        //         listaDeAutores.add(autor);
+        //     }
+        // } catch (JsonIOException e) {
+        //     System.err.println("HA OCURRIDO UNA EXCEPCION");
+        //     e.printStackTrace();
+        // } catch (JsonSyntaxException e) {
+        //     System.err.println("ERROR EN LA SINTAXIS DEL ARCHIVO");
+        //     e.printStackTrace();
+        // } catch (FileNotFoundException e) {
+        //     System.err.println("ARCHIVO NO ENCONTRADO");
+        //     e.printStackTrace();
+        // }
         Gson gson = new Gson();
         String rutaFile = "src/main/java/com/ejer_poo/biblioteca/json/autores.json";
         String json = "";
@@ -313,17 +349,56 @@ public class BibliotecaController {
         return lista;
     }
     public ArrayList<Libro> leerJsonLibro(){
-        Gson gson = new Gson();
-        String rutaFile = "src/main/java/com/ejer_poo/biblioteca/json/libros.json";
-        String json = "";
+        File input = new File("./src/main/java/com/ejer_poo/biblioteca/json/libros.json");
+        ArrayList<Libro> listaDeLibros = new ArrayList<>(); 
         try {
-            json = Files.readString(Paths.get(rutaFile));
-        } catch (Exception e) {
-            System.out.println(e);
+            JsonElement elemento = JsonParser.parseReader(new FileReader(input));
+            JsonArray listaObjetos = elemento.getAsJsonArray();
+            for (JsonElement element : listaObjetos) {
+                JsonObject objeto = element.getAsJsonObject();
+                int codigo = objeto.get("codigo").getAsInt();
+                String titulo = objeto.get("titulo").getAsString();
+                int idAutor = objeto.get("autor").getAsInt();
+                int anio = objeto.get("año").getAsInt();
+                boolean prestado = objeto.get("prestado").getAsBoolean();
+                //LECTURA DE PRETADOR EN CASO DE QUE EXISTA
+                Integer idPrestador = 0;
+                if (objeto.has("prestador")) {
+                    idPrestador = objeto.get("prestador").getAsInt();
+                }
+                //BUSQUEDAS DE AUTOR
+                Autor elAutor = new Autor();
+                for (Autor autor : listaAutores) {
+                    if(autor.getId() == idAutor){
+                        elAutor = autor;
+                        break;
+                    }
+                }
+                
+                //BUSQUEDA PRESTADOR
+                Cliente elPrestador = null;
+                for (Cliente cliente : listaClientes) {
+                    if (cliente.getId() == idPrestador) {
+                        elPrestador = cliente;
+                    }
+                }
+                
+                Libro libro = new Libro(titulo, elAutor, anio, prestado, elPrestador);
+                libro.setCodigManual(codigo);
+                listaDeLibros.add(libro);
+                autorG.listaLibros.add(libro);
+            }
+        } catch (JsonIOException e) {
+            System.err.println("HA OCURRIDO UNA EXCEPCION");
+            e.printStackTrace();
+        } catch (JsonSyntaxException e) {
+            System.err.println("ERROR EN LA SINTAXIS DEL ARCHIVO");
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            System.err.println("ARCHIVO NO ENCONTRADO");
+            e.printStackTrace();
         }
-        Type libroType = new TypeToken<ArrayList<Libro>>() {}.getType();
-        ArrayList<Libro> lista = gson.fromJson(json, libroType);
-        return lista;
+        return listaDeLibros;
     }
     public ArrayList<Cliente> leerJsonCliente(){
         Gson gson = new Gson();

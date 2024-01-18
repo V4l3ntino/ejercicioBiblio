@@ -2,14 +2,14 @@
   {
     "codigo": 812,
     "titulo": "El señor de los anillos",
-    "autor": 40,
+    "autor": 800,
     "año": 1957,
     "prestado": false
   },
   {
     "codigo": 913,
     "titulo": "Reina Roja",
-    "autor": 245,
+    "autor": 233,
     "año": 2018,
     "prestado": false
   },
@@ -24,6 +24,14 @@
   {
     "codigo": 23,
     "titulo": "peras",
+    "autor": 949,
+    "año": 2001,
+    "prestado": true,
+    "prestador": 895
+  },
+  {
+    "codigo": 95,
+    "titulo": "melones",
     "autor": 949,
     "año": 2001,
     "prestado": true,

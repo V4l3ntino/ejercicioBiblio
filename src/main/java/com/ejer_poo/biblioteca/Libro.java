@@ -28,6 +28,10 @@ public class Libro {
         this.codigo = Utilidades.generarCodigoLibro();
     }
 
+    public void setCodigManual(int id){
+        this.codigo = id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -69,7 +73,5 @@ public class Libro {
     public Cliente getPrestador() {
         return prestador;
     }
-    public void imprimir() {
-        
-    }
+
 }
