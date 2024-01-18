@@ -8,7 +8,7 @@ public class Autor {
     private String apellido1;
     private String apellido2;
     private String email;
-    ArrayList<Libro> libros = new ArrayList<>(); // 1 autor -> N libros
+    ArrayList<Libro> listaLibros = new ArrayList<>(); // 1 autor -> N libros
 
     public Autor(String nombre, String ape1, String ape2, String email) {
         this.setId();
@@ -64,11 +64,11 @@ public class Autor {
     }
 
     public void setLibros(Libro libro) {
-        this.libros.add(libro);
+        this.listaLibros.add(libro);
     }
 
-    public ArrayList<Libro> getLibros() {
-        return this.libros;
+    public ArrayList<Libro> getListaLibros() {
+        return this.listaLibros;
     }
     
     public String getNombreCita() {

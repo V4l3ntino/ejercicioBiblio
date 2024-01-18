@@ -1,67 +1,33 @@
 [
   {
     "id": 19,
-    "nombre": "defaultUser"
+    "nombre": "defaultUser",
+    "listaLibrosPrestados": []
   },
   {
     "id": 445,
-    "nombre": "Paco"
+    "nombre": "Paco",
+    "listaLibrosPrestados": []
   },
   {
     "id": 303,
-    "nombre": "German"
+    "nombre": "German",
+    "listaLibrosPrestados": []
   },
   {
-    "id": 734,
-    "nombre": "Jose"
+    "id": 228,
+    "nombre": "JoseManuel",
+    "apellido1": "Manuel",
+    "apellido2": "Gomez",
+    "email": "jsoe@email",
+    "listaLibrosPrestados": []
   },
   {
-    "id": 982,
-    "nombre": "Valentino"
-  },
-  {
-    "id": 112,
-    "nombre": "Ivan"
-  },
-  {
-    "id": 10,
-    "nombre": "Cristian"
-  },
-  {
-    "id": 293,
-    "nombre": "Manolo"
-  },
-  {
-    "id": 816,
-    "nombre": "manolo",
-    "apellido1": "manu",
-    "apellido2": "manuelito",
-    "email": "manu@manu"
-  },
-  {
-    "id": 884,
-    "nombre": "defaultUser"
-  },
-  {
-    "id": 649,
-    "nombre": "defaultUser"
-  },
-  {
-    "id": 497,
-    "nombre": "ag",
-    "apellido1": "",
-    "apellido2": "",
-    "email": ""
-  },
-  {
-    "id": 153,
-    "nombre": "defaultUser"
-  },
-  {
-    "id": 859,
-    "nombre": "JOSEMANU",
-    "apellido1": "JOSE",
-    "apellido2": "MANU",
-    "email": ""
+    "id": 895,
+    "nombre": "Valentino",
+    "apellido1": "Hontar",
+    "apellido2": "Dos",
+    "email": "valen@email",
+    "listaLibrosPrestados": []
   }
 ]

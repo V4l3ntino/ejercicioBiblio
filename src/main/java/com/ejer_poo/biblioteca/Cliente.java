@@ -1,5 +1,7 @@
 package com.ejer_poo.biblioteca;
 
+import java.util.ArrayList;
+
 public class Cliente {
     private int id;
     private String nombre;
@@ -7,16 +9,16 @@ public class Cliente {
     private String apellido2;
     private String email;
     private Libro libroPrestado;
+    ArrayList<Libro> listaLibrosPrestados = new ArrayList<>();
 
     public Cliente(){};
 
-    public Cliente(String nombre, String apellido1, String apellido2, String email, Libro libro) {
+    public Cliente(String nombre, String apellido1, String apellido2, String email) {
         setId();
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
         this.email = email;
-        setLibroPrestado(libro);
     }
     public void setId() {
         this.id = Utilidades.generarCodigoLibro();
@@ -56,11 +58,16 @@ public class Cliente {
         this.email = email;
     }
 
-    public Libro getLibroPrestado() {
-        return libroPrestado;
+    public ArrayList<Libro> getLibroPrestado() {
+        return this.listaLibrosPrestados;
     }
 
     public void setLibroPrestado(Libro libroPrestado) {
-        this.libroPrestado = libroPrestado;
+        listaLibrosPrestados.add(libroPrestado);
+    }
+    public void listarLibros(){
+        for (Libro libro : listaLibrosPrestados) {
+            System.out.print("Libors: %s, ".formatted(libro.getTitulo()));
+        }
     }
 }

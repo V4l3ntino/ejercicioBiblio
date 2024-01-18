@@ -55,6 +55,7 @@ public class BibliotecaController {
     public void devolverLibro(Libro libro) {
         if (libro.getPrestado().equals(true)) {
             libro.setPrestado(false);
+            libro.setPrestador(null);
         }
         
     }
@@ -114,7 +115,7 @@ public class BibliotecaController {
         var autor2 = new Autor("Juan", "Gomez", "Jurado", "jurado@mail.com");
         var libro = new Libro("El señor de los anillos", autor, 1957,false,null);
         var libro2 = new Libro("Reina Roja", autor2, 2018,false,null);
-        var cliente = new Cliente("defaultUser",null,null,null,null);
+        var cliente = new Cliente("defaultUser",null,null,null);
         listaAutores.add(autor);
         listaAutores.add(autor2);
         listaLibros.add(libro);
@@ -176,26 +177,31 @@ public class BibliotecaController {
                         break;
                 }
             } catch (Exception e) {
-                System.out.println("SOLO PUEDES ELEGIR 1/0");
+                System.out.println("1=SI, 0=NO");
             }
         }
         //PRESTAR LIBRO
         if (option == true) {
-            System.out.print("Introduce el nombre del libro: ");
-            String nombreLibro = System.console().readLine();
-            boolean aux = validarLibro(nombreLibro);
-            if (aux == true) {
-                cliente = new Cliente(nombreCliente,ape1,ape2,email,libroG);
-                listaClientes.add(cliente);
-                libroG.setPrestado(true);
-                libroG.setPrestador(cliente);
-                System.out.println("EL LIBRO %s SE HA PRESTADO CORRECTAMENTE AL CLIENTE %s".formatted(cliente.getLibroPrestado().getTitulo(),libroG.getPrestador().getNombre()));
-
-            }else{
-                System.out.println("El libro no existe");
+            boolean comprobar = false;
+            while (!comprobar) {
+                System.out.print("Introduce el nombre del libro: ");
+                String nombreLibro = System.console().readLine();
+                boolean aux = validarLibro(nombreLibro);
+                if (aux == true) {
+                    cliente = new Cliente(nombreCliente,ape1,ape2,email);
+                    listaClientes.add(cliente);
+                    libroG.setPrestado(true);
+                    libroG.setPrestador(cliente);
+                    System.out.println("EL LIBRO %s SE HA PRESTADO CORRECTAMENTE AL CLIENTE %s".formatted(libroG.getTitulo().toUpperCase(),libroG.getPrestador().getNombre().toUpperCase()));
+                    comprobar = true;
+    
+                }else{
+                    System.out.println("El libro no existe");
+                    this.listarLibros();
+                }
             }
         } else {
-            cliente = new Cliente(nombreCliente,ape1,ape2,email,null);
+            cliente = new Cliente(nombreCliente,ape1,ape2,email);
             listaClientes.add(cliente);
             
         }
@@ -206,7 +212,7 @@ public class BibliotecaController {
         
         System.out.print("[+] Titulo: ");
         String newTitulo = System.console().readLine();
-
+        this.listarAutores();
         System.out.print("[+] Autor: ");
         String newNombre = System.console().readLine();
         Autor newAutor = null;
@@ -269,22 +275,27 @@ public class BibliotecaController {
         }
         //PRESTAR LIBRO
         if (option == true) {
-            System.out.print("Introduce el nombre del cliente que va a ser prestado: ");
-            String nombreCliente = System.console().readLine();
-            boolean aux = validarCliente(nombreCliente);
-            if (aux == true) {
-                var libro = new Libro(newTitulo, newAutor, año,option,cliente); // 1 libro -> 1 autor
-                cliente.setLibroPrestado(libro);
-                newAutor.setLibros(libro); // 1 autor -> N libros
-                this.addLibro(libro);
-                System.out.println("EL LIBRO SE HA PRESTADO CORRECTAMENTE AL CLIENTE %s".formatted(libro.getPrestador().getNombre()));
+            boolean comprobar = false;
+            while (!comprobar) {
+                System.out.print("Introduce el nombre del cliente que va a ser prestado: ");
+                String nombreCliente = System.console().readLine();
+                boolean aux = validarCliente(nombreCliente);
+                if (aux == true) {
+                    var libro = new Libro(newTitulo, newAutor, año,option,cliente); // 1 libro -> 1 autor
+                    //cliente.setLibroPrestado(libro);
+                    //newAutor.setLibros(libro); // 1 autor -> N libros
+                    this.addLibro(libro);
+                    System.out.println("EL LIBRO \"%s\" SE HA PRESTADO CORRECTAMENTE AL CLIENTE \"%s\"".formatted(libro.getTitulo().toUpperCase(),libro.getPrestador().getNombre().toUpperCase()));
+                    comprobar = true;
 
-            }else{
-                System.out.println("El cliente no existe");
+                }else{
+                    System.out.println("El cliente no existe");
+                    this.listarClientes();
+                }
             }
         } else {
             var libro = new Libro(newTitulo, newAutor, año,option,null); // 1 libro -> 1 autor
-            newAutor.setLibros(libro); // 1 autor -> N libros
+            //newAutor.setLibros(libro); // 1 autor -> N libros
             this.addLibro(libro);
         }
     }
@@ -363,6 +374,7 @@ public class BibliotecaController {
         boolean aux = validarCliente(nombreCliente);
         if (aux == true){
                 //LIBRO
+            this.listarLibros();
             System.out.print("[+] Introduzca el título del libro: ");
             String nombreLibro = System.console().readLine();
             //validarLibro
@@ -380,7 +392,7 @@ public class BibliotecaController {
                             this.prestarLibro(libro);
                             System.out.println();
                             System.out.println("--------------------------------------------------------------------");
-                            System.out.println("| EL LIBRO SE HA PRESTADO CORRECTAMENTE AL CLIENTE "+ libro.getPrestador().getNombre()+" |");
+                            System.out.println("| EL LIBRO SE HA PRESTADO CORRECTAMENTE AL CLIENTE \""+ libro.getPrestador().getNombre().toUpperCase()+"\" |");
                             System.out.println("--------------------------------------------------------------------");
                             System.out.println();
                         }
@@ -401,6 +413,7 @@ public class BibliotecaController {
         }
     }
     public void caso8(){
+        this.listarLibros();
         System.out.print("[*] Introduzca el título: ");
                 String nombreLibro = System.console().readLine();
                 //validarLibro
@@ -426,6 +439,22 @@ public class BibliotecaController {
                     System.out.println();
                 }
     }
+    public void consultar(){
+        this.listarLibros();
+        System.out.println("Introduce el nombre del libro");
+        String nombreLibro = System.console().readLine();
+        boolean auxiliar = false;
+        auxiliar = validarLibro(nombreLibro);
+        if (auxiliar == true) {
+            if (libroG.getPrestador().getNombre() == null) {
+                System.out.println("El libro no ha sido prestado a nadie");
+            } else {
+                System.out.println("El libro esta siendo prestado al cliente \"%s\"".formatted(libroG.getPrestador().getNombre().toUpperCase()));
+            }
+        } else {
+            System.out.println("El libro no existe");
+        }
+    }
 
     public void menu() {
         System.out.println("""
@@ -439,7 +468,8 @@ public class BibliotecaController {
                 6. Listar clientes
                 7. Prestar libro
                 8. Devolver libro
-                9. Salir
+                9. Consultar libro prestado
+                10. Exit
                 """);
         
         System.out.print("Elige una opción: ");
@@ -464,7 +494,8 @@ public class BibliotecaController {
             case "6" -> this.listarClientes();
             case "7" -> this.caso7();
             case "8" -> this.caso8();
-            case "9" -> {
+            case "9" -> this.consultar();
+            case "10" -> {
                 this.crearJson();
                 System.exit(0);}
             

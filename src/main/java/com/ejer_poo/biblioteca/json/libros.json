@@ -7,11 +7,14 @@
       "nombre1": "John",
       "apellido1": "Ronald",
       "apellido2": "Tolkien",
-      "email": "tolkien@mail.com",
-      "libros": []
+      "email": "tolkien@mail.com"
     },
     "año": 1957,
-    "prestado": false
+    "prestado": false,
+    "cliente": {
+      "id": 0,
+      "listaLibrosPrestados": []
+    }
   },
   {
     "codigo": 913,
@@ -21,94 +24,60 @@
       "nombre1": "Juan",
       "apellido1": "Gomez",
       "apellido2": "Jurado",
-      "email": "jurado@mail.com",
-      "libros": []
+      "email": "jurado@mail.com"
     },
     "año": 2018,
-    "prestado": false
+    "prestado": false,
+    "cliente": {
+      "id": 0,
+      "listaLibrosPrestados": []
+    }
   },
   {
-    "codigo": 812,
-    "titulo": "EL SEÑOR DE LAS MANZANAS",
+    "codigo": 44,
+    "titulo": "manzanas",
     "autor": {
-      "id": 40,
-      "nombre1": "manolo",
-      "apellido1": "carrillo",
-      "apellido2": "sanchez",
-      "email": "manolo@email",
-      "libros": []
+      "id": 949,
+      "nombre1": "Jose",
+      "apellido1": "manuel",
+      "apellido2": "perez",
+      "email": "manu@email"
     },
-    "año": 1999,
-    "prestado": false
+    "prestador": {
+      "id": 445,
+      "nombre": "Paco",
+      "listaLibrosPrestados": []
+    },
+    "año": 2001,
+    "prestado": true,
+    "cliente": {
+      "id": 0,
+      "listaLibrosPrestados": []
+    }
   },
   {
-    "codigo": 812,
-    "titulo": "EL SEÑOR DE LAS PERAS",
+    "codigo": 23,
+    "titulo": "peras",
     "autor": {
-      "id": 40,
-      "nombre1": "Pepe",
-      "apellido1": "Sancho",
-      "apellido2": "Paza",
-      "email": "pepe@mail.com",
-      "libros": []
+      "id": 949,
+      "nombre1": "Jose",
+      "apellido1": "manuel",
+      "apellido2": "perez",
+      "email": "manu@email"
     },
-    "año": 1888,
-    "prestado": false
-  },
-  {
-    "codigo": 793,
-    "titulo": "El señor de los anillos",
-    "autor": {
-      "id": 210,
-      "nombre1": "John",
-      "apellido1": "Ronald",
-      "apellido2": "Tolkien",
-      "email": "tolkien@mail.com",
-      "libros": []
+    "prestador": {
+      "id": 895,
+      "nombre": "Valentino",
+      "apellido1": "Hontar",
+      "apellido2": "Dos",
+      "email": "valen@email",
+      "listaLibrosPrestados": []
     },
-    "año": 1957,
-    "prestado": false
-  },
-  {
-    "codigo": 527,
-    "titulo": "Reina Roja",
-    "autor": {
-      "id": 665,
-      "nombre1": "Juan",
-      "apellido1": "Gomez",
-      "apellido2": "Jurado",
-      "email": "jurado@mail.com",
-      "libros": []
-    },
-    "año": 2018,
-    "prestado": false
-  },
-  {
-    "codigo": 803,
-    "titulo": "El señor de los anillos",
-    "autor": {
-      "id": 742,
-      "nombre1": "John",
-      "apellido1": "Ronald",
-      "apellido2": "Tolkien",
-      "email": "tolkien@mail.com",
-      "libros": []
-    },
-    "año": 1957,
-    "prestado": false
-  },
-  {
-    "codigo": 89,
-    "titulo": "Reina Roja",
-    "autor": {
-      "id": 247,
-      "nombre1": "Juan",
-      "apellido1": "Gomez",
-      "apellido2": "Jurado",
-      "email": "jurado@mail.com",
-      "libros": []
-    },
-    "año": 2018,
-    "prestado": false
+    "año": 2001,
+    "prestado": true,
+    "cliente": {
+      "id": 0,
+      "listaLibrosPrestados": []
+    }
   }
 ]
