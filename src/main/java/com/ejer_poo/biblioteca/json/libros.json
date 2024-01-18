@@ -10,12 +10,11 @@
       "email": "manu@email"
     },
     "prestador": {
-      "id": 445,
-      "nombre": "Paco",
+      "id": 0,
       "listaLibrosPrestados": []
     },
     "año": 2001,
-    "prestado": true,
+    "prestado": false,
     "cliente": {
       "id": 0,
       "listaLibrosPrestados": []
@@ -43,29 +42,8 @@
     }
   },
   {
-    "codigo": 351,
-    "titulo": "El señor de los anillos",
-    "autor": {
-      "id": 800,
-      "nombre1": "John",
-      "apellido1": "Ronald",
-      "apellido2": "Tolkien",
-      "email": "tolkien@mail.com"
-    },
-    "prestador": {
-      "id": 0,
-      "listaLibrosPrestados": []
-    },
-    "año": 1954,
-    "prestado": false,
-    "cliente": {
-      "id": 0,
-      "listaLibrosPrestados": []
-    }
-  },
-  {
-    "codigo": 718,
-    "titulo": "Reina Roja",
+    "codigo": 995,
+    "titulo": "sandias",
     "autor": {
       "id": 233,
       "nombre1": "Juan",
@@ -74,32 +52,11 @@
       "email": "jurado@mail.com"
     },
     "prestador": {
-      "id": 0,
+      "id": 303,
+      "nombre": "German",
       "listaLibrosPrestados": []
     },
-    "año": 2018,
-    "prestado": false,
-    "cliente": {
-      "id": 0,
-      "listaLibrosPrestados": []
-    }
-  },
-  {
-    "codigo": 719,
-    "titulo": "Aventuras",
-    "autor": {
-      "id": 949,
-      "nombre1": "Jose",
-      "apellido1": "manuel",
-      "apellido2": "perez",
-      "email": "manu@email"
-    },
-    "prestador": {
-      "id": 445,
-      "nombre": "Paco",
-      "listaLibrosPrestados": []
-    },
-    "año": 2001,
+    "año": 1999,
     "prestado": true,
     "cliente": {
       "id": 0,
