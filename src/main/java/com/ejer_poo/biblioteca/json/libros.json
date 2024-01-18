@@ -1,39 +1,5 @@
 [
   {
-    "codigo": 812,
-    "titulo": "El señor de los anillos",
-    "autor": {
-      "id": 40,
-      "nombre1": "John",
-      "apellido1": "Ronald",
-      "apellido2": "Tolkien",
-      "email": "tolkien@mail.com"
-    },
-    "año": 1957,
-    "prestado": false,
-    "cliente": {
-      "id": 0,
-      "listaLibrosPrestados": []
-    }
-  },
-  {
-    "codigo": 913,
-    "titulo": "Reina Roja",
-    "autor": {
-      "id": 245,
-      "nombre1": "Juan",
-      "apellido1": "Gomez",
-      "apellido2": "Jurado",
-      "email": "jurado@mail.com"
-    },
-    "año": 2018,
-    "prestado": false,
-    "cliente": {
-      "id": 0,
-      "listaLibrosPrestados": []
-    }
-  },
-  {
     "codigo": 44,
     "titulo": "manzanas",
     "autor": {
@@ -66,11 +32,71 @@
       "email": "manu@email"
     },
     "prestador": {
-      "id": 895,
-      "nombre": "Valentino",
-      "apellido1": "Hontar",
-      "apellido2": "Dos",
-      "email": "valen@email",
+      "id": 0,
+      "listaLibrosPrestados": []
+    },
+    "año": 2001,
+    "prestado": false,
+    "cliente": {
+      "id": 0,
+      "listaLibrosPrestados": []
+    }
+  },
+  {
+    "codigo": 351,
+    "titulo": "El señor de los anillos",
+    "autor": {
+      "id": 800,
+      "nombre1": "John",
+      "apellido1": "Ronald",
+      "apellido2": "Tolkien",
+      "email": "tolkien@mail.com"
+    },
+    "prestador": {
+      "id": 0,
+      "listaLibrosPrestados": []
+    },
+    "año": 1954,
+    "prestado": false,
+    "cliente": {
+      "id": 0,
+      "listaLibrosPrestados": []
+    }
+  },
+  {
+    "codigo": 718,
+    "titulo": "Reina Roja",
+    "autor": {
+      "id": 233,
+      "nombre1": "Juan",
+      "apellido1": "Gomez",
+      "apellido2": "Jurado",
+      "email": "jurado@mail.com"
+    },
+    "prestador": {
+      "id": 0,
+      "listaLibrosPrestados": []
+    },
+    "año": 2018,
+    "prestado": false,
+    "cliente": {
+      "id": 0,
+      "listaLibrosPrestados": []
+    }
+  },
+  {
+    "codigo": 719,
+    "titulo": "Aventuras",
+    "autor": {
+      "id": 949,
+      "nombre1": "Jose",
+      "apellido1": "manuel",
+      "apellido2": "perez",
+      "email": "manu@email"
+    },
+    "prestador": {
+      "id": 445,
+      "nombre": "Paco",
       "listaLibrosPrestados": []
     },
     "año": 2001,

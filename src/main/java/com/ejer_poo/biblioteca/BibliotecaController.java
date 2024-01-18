@@ -47,7 +47,7 @@ public class BibliotecaController {
     public void prestarLibro(Libro libro) {
         if (libro.getPrestado().equals(false)) {
             libro.setPrestado(true);
-            cliente.setLibroPrestado(libro);
+            //cliente.setLibroPrestado(libro);
             libro.setPrestador(cliente);
         }
     } 
