@@ -1,84 +1,32 @@
 [
   {
+    "codigo": 812,
+    "titulo": "El señor de los anillos",
+    "autor": 40,
+    "año": 1957,
+    "prestado": false
+  },
+  {
+    "codigo": 913,
+    "titulo": "Reina Roja",
+    "autor": 245,
+    "año": 2018,
+    "prestado": false
+  },
+  {
     "codigo": 44,
     "titulo": "manzanas",
-    "autor": {
-      "id": 949,
-      "nombre1": "Jose",
-      "apellido1": "manuel",
-      "apellido2": "perez",
-      "email": "manu@email"
-    },
-    "prestador": {
-      "id": 0
-    },
+    "autor": 949,
     "año": 2001,
-    "prestado": false,
-    "cliente": {
-      "id": 0
-    }
+    "prestado": true,
+    "prestador": 445
   },
   {
     "codigo": 23,
     "titulo": "peras",
-    "autor": {
-      "id": 949,
-      "nombre1": "Jose",
-      "apellido1": "manuel",
-      "apellido2": "perez",
-      "email": "manu@email"
-    },
-    "prestador": {
-      "id": 895,
-      "nombre": "Valentino",
-      "apellido1": "Hontar",
-      "apellido2": "Dos",
-      "email": "valen@email"
-    },
+    "autor": 949,
     "año": 2001,
     "prestado": true,
-    "cliente": {
-      "id": 0
-    }
-  },
-  {
-    "codigo": 995,
-    "titulo": "sandias",
-    "autor": {
-      "id": 233,
-      "nombre1": "Juan",
-      "apellido1": "Gomez",
-      "apellido2": "Jurado",
-      "email": "jurado@mail.com"
-    },
-    "prestador": {
-      "id": 303,
-      "nombre": "German"
-    },
-    "año": 1999,
-    "prestado": true,
-    "cliente": {
-      "id": 0
-    }
-  },
-  {
-    "codigo": 877,
-    "titulo": "Cocacola",
-    "autor": {
-      "id": 233,
-      "nombre1": "Juan",
-      "apellido1": "Gomez",
-      "apellido2": "Jurado",
-      "email": "jurado@mail.com"
-    },
-    "prestador": {
-      "id": 303,
-      "nombre": "German"
-    },
-    "año": 1999,
-    "prestado": true,
-    "cliente": {
-      "id": 0
-    }
+    "prestador": 895
   }
 ]
