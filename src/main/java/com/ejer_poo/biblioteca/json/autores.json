@@ -4,20 +4,23 @@
     "nombre1": "John",
     "apellido1": "Ronald",
     "apellido2": "Tolkien",
-    "email": "tolkien@mail.com"
+    "email": "tolkien@mail.com",
+    "listaLibros": []
   },
   {
     "id": 233,
     "nombre1": "Juan",
     "apellido1": "Gomez",
     "apellido2": "Jurado",
-    "email": "jurado@mail.com"
+    "email": "jurado@mail.com",
+    "listaLibros": []
   },
   {
     "id": 949,
     "nombre1": "Jose",
     "apellido1": "manuel",
     "apellido2": "perez",
-    "email": "manu@email"
+    "email": "manu@email",
+    "listaLibros": []
   }
 ]

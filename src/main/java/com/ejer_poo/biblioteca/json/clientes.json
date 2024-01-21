@@ -1,28 +1,33 @@
 [
   {
     "id": 19,
-    "nombre": "defaultUser"
+    "nombre": "defaultUser",
+    "listaLibrosPrestados": []
   },
   {
     "id": 445,
-    "nombre": "Paco"
+    "nombre": "Paco",
+    "listaLibrosPrestados": []
   },
   {
     "id": 303,
-    "nombre": "German"
+    "nombre": "German",
+    "listaLibrosPrestados": []
   },
   {
     "id": 228,
     "nombre": "JoseManuel",
     "apellido1": "Manuel",
     "apellido2": "Gomez",
-    "email": "jsoe@email"
+    "email": "jsoe@email",
+    "listaLibrosPrestados": []
   },
   {
     "id": 895,
     "nombre": "Constantino",
     "apellido1": "Hontar",
     "apellido2": "Dos",
-    "email": "valen@email"
+    "email": "valen@email",
+    "listaLibrosPrestados": []
   }
 ]

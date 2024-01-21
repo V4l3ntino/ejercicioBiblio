@@ -36,5 +36,21 @@
     "año": 2001,
     "prestado": true,
     "prestador": 895
+  },
+  {
+    "codigo": 153,
+    "titulo": "SUPERLIBRO",
+    "autor": 949,
+    "año": 20000,
+    "prestado": true,
+    "prestador": 445
+  },
+  {
+    "codigo": 361,
+    "titulo": "SUPERLIBRO-2",
+    "autor": 949,
+    "año": 1982,
+    "prestado": true,
+    "prestador": 228
   }
 ]
