@@ -11,7 +11,8 @@
     "titulo": "Reina Roja",
     "autor": 233,
     "año": 2018,
-    "prestado": false
+    "prestado": true,
+    "prestador": 445
   },
   {
     "codigo": 44,
@@ -27,7 +28,7 @@
     "autor": 949,
     "año": 2001,
     "prestado": true,
-    "prestador": 895
+    "prestador": 445
   },
   {
     "codigo": 95,
@@ -35,7 +36,7 @@
     "autor": 949,
     "año": 2001,
     "prestado": true,
-    "prestador": 895
+    "prestador": 445
   },
   {
     "codigo": 153,

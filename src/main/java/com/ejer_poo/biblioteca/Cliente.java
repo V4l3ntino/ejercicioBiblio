@@ -2,13 +2,14 @@ package com.ejer_poo.biblioteca;
 
 import java.util.ArrayList;
 
+import com.google.gson.JsonElement;
+
 public class Cliente {
     private int id;
     private String nombre;
     private String apellido1;
     private String apellido2;
     private String email;
-    private Libro libroPrestado;
     ArrayList<Libro> listaLibrosPrestados = new ArrayList<>();
 
     public Cliente(){};
@@ -65,9 +66,16 @@ public class Cliente {
     public void setLibroPrestado(Libro libroPrestado) {
         listaLibrosPrestados.add(libroPrestado);
     }
-    public void listarLibros(){
+    public ArrayList books(){
+        ArrayList <String> libros = new ArrayList<>();
         for (Libro libro : listaLibrosPrestados) {
-            System.out.print("Libors: %s, ".formatted(libro.getTitulo()));
+            libros.add(libro.getTitulo());
         }
+        return libros;
     }
+    @Override
+    public String toString() {
+        return "%d = %s".formatted(id,nombre)+"LIBROS "+ books();
+    }
+
 }

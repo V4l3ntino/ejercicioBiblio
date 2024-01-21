@@ -29,11 +29,13 @@ import java.lang.reflect.Type;
 
 import javax.tools.OptionChecker;
 
+import org.json.JSONArray;
+
 import com.google.gson.reflect.TypeToken;
 
 public class BibliotecaController {
     private String nombre;
-    public ArrayList<Libro> listaLibros = new ArrayList<>();
+    private  ArrayList<Libro> listaLibros = new ArrayList<>();
     private ArrayList<Autor> listaAutores = new ArrayList<>();
     private ArrayList<Cliente> listaClientes = new ArrayList<>();
     Cliente clienteG = new Cliente();
@@ -61,8 +63,8 @@ public class BibliotecaController {
     public void prestarLibro(Libro libro) {
         if (libro.getPrestado().equals(false)) {
             libro.setPrestado(true);
-            //cliente.setLibroPrestado(libro);
             libro.setPrestador(clienteG);
+            clienteG.setLibroPrestado(libro);
         }
     } 
 
@@ -107,7 +109,7 @@ public class BibliotecaController {
         System.out.println("\t LISTADO DE AUTORES");
         System.out.println("========================================");
         for (Autor autor : this.listaAutores) {
-            System.out.println("%d -  %s, %s ".formatted(autor.getId(),autor.getFullName(),autor.getEmail()) );
+            System.out.println(autor.toString());
         }
         System.out.println("========================================");
         System.out.println();
@@ -119,7 +121,7 @@ public class BibliotecaController {
         System.out.println("========================================");
         System.out.println("    ID - NOMBRE");
         for (Cliente cliente : listaClientes) {
-            System.out.println("[*] %d - %s ".formatted(cliente.getId(), cliente.getNombre()));
+            System.out.println(cliente.toString());
         }
         System.out.println("========================================");
     }
@@ -204,8 +206,7 @@ public class BibliotecaController {
                 if (aux == true) {
                     clienteG = new Cliente(nombreCliente,ape1,ape2,email);
                     listaClientes.add(clienteG);
-                    libroG.setPrestado(true);
-                    libroG.setPrestador(clienteG);
+                    this.prestarLibro(libroG);
                     System.out.println("EL LIBRO %s SE HA PRESTADO CORRECTAMENTE AL CLIENTE %s".formatted(libroG.getTitulo().toUpperCase(),libroG.getPrestador().getNombre().toUpperCase()));
                     comprobar = true;
     
@@ -296,8 +297,8 @@ public class BibliotecaController {
                 boolean aux = validarCliente(nombreCliente);
                 if (aux == true) {
                     var libro = new Libro(newTitulo, newAutor, año,option,clienteG); // 1 libro -> 1 autor
-                    //cliente.setLibroPrestado(libro);
-                    //newAutor.setLibros(libro); // 1 autor -> N libros
+                    newAutor.setLibros(libro);
+                    clienteG.setLibroPrestado(libro);
                     this.addLibro(libro);
                     System.out.println("EL LIBRO \"%s\" SE HA PRESTADO CORRECTAMENTE AL CLIENTE \"%s\"".formatted(libro.getTitulo().toUpperCase(),libro.getPrestador().getNombre().toUpperCase()));
                     comprobar = true;
@@ -308,49 +309,49 @@ public class BibliotecaController {
                 }
             }
         } else {
-            var libro = new Libro(newTitulo, newAutor, año,option,null); // 1 libro -> 1 autor
-            //newAutor.setLibros(libro); // 1 autor -> N libros
+            var libro = new Libro(newTitulo, newAutor, año,option,null); 
+            newAutor.setLibros(libro);
             this.addLibro(libro);
         }
     }
     public ArrayList<Autor> leerJsonAutor(){
-        // File input = new File("./src/main/java/com/ejer_poo/biblioteca/json/autores.json");
-        // ArrayList<Autor> listaDeAutores = new ArrayList<>(); 
-        // try {
-        //     JsonElement elemento = JsonParser.parseReader(new FileReader(input));
-        //     JsonArray listaObjetos = elemento.getAsJsonArray();
-        //     for (JsonElement element : listaObjetos) {
-        //         JsonObject objeto = element.getAsJsonObject();
-        //         int id = objeto.get("id").getAsInt();
-        //         String name = objeto.get("nombre1").getAsString();
-        //         String surname1 = objeto.get("apellido1").getAsString();
-        //         String surname2 = objeto.get("apellido2").getAsString();
-        //         String email = objeto.get("email").getAsString();
-        //         Autor autor = new Autor(name, surname1, surname2, email);
-        //         autor.setIdManual(id);
-        //         listaDeAutores.add(autor);
-        //     }
-        // } catch (JsonIOException e) {
-        //     System.err.println("HA OCURRIDO UNA EXCEPCION");
-        //     e.printStackTrace();
-        // } catch (JsonSyntaxException e) {
-        //     System.err.println("ERROR EN LA SINTAXIS DEL ARCHIVO");
-        //     e.printStackTrace();
-        // } catch (FileNotFoundException e) {
-        //     System.err.println("ARCHIVO NO ENCONTRADO");
-        //     e.printStackTrace();
-        // }
-        Gson gson = new Gson();
-        String rutaFile = "src/main/java/com/ejer_poo/biblioteca/json/autores.json";
-        String json = "";
+        File input = new File("./src/main/java/com/ejer_poo/biblioteca/json/autores.json");
+        ArrayList<Autor> listaDeAutores = new ArrayList<>(); 
         try {
-            json = Files.readString(Paths.get(rutaFile));
-        } catch (Exception e) {
-            System.out.println(e);
+            JsonElement elemento = JsonParser.parseReader(new FileReader(input));
+            JsonArray listaObjetos = elemento.getAsJsonArray();
+            for (JsonElement element : listaObjetos) {
+                JsonObject objeto = element.getAsJsonObject();
+                int id = objeto.get("id").getAsInt();
+                String name = objeto.get("nombre1").getAsString();
+                String surname1 = objeto.get("apellido1").getAsString();
+                String surname2 = objeto.get("apellido2").getAsString();
+                String email = objeto.get("email").getAsString();
+                Autor autor = new Autor(name, surname1, surname2, email);
+                autor.setIdManual(id);
+                listaDeAutores.add(autor);
+            }
+        } catch (JsonIOException e) {
+            System.err.println("HA OCURRIDO UNA EXCEPCION");
+            e.printStackTrace();
+        } catch (JsonSyntaxException e) {
+            System.err.println("ERROR EN LA SINTAXIS DEL ARCHIVO");
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            System.err.println("ARCHIVO NO ENCONTRADO");
+            e.printStackTrace();
         }
-        Type autorType = new TypeToken<ArrayList<Autor>>() {}.getType();
-        ArrayList<Autor> lista = gson.fromJson(json, autorType);
-        return lista;
+        // Gson gson = new Gson();
+        // String rutaFile = "src/main/java/com/ejer_poo/biblioteca/json/autores.json";
+        // String json = "";
+        // try {
+        //     json = Files.readString(Paths.get(rutaFile));
+        // } catch (Exception e) {
+        //     System.out.println(e);
+        // }
+        // Type autorType = new TypeToken<ArrayList<Autor>>() {}.getType();
+        // ArrayList<Autor> lista = gson.fromJson(json, autorType);
+        return listaDeAutores;
     }
     public ArrayList<Libro> leerJsonLibro(){
         File input = new File("./src/main/java/com/ejer_poo/biblioteca/json/libros.json");
@@ -422,7 +423,7 @@ public class BibliotecaController {
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
             String jsonStringAutores = gson.toJson(listaAutores);
-            String jsonStringClientes = gson.toJson(listaClientes);
+            
             // CREO EL ARCHIVO JSON DE AUTORES
             try (PrintWriter autores = new PrintWriter(new File("./src/main/java/com/ejer_poo/biblioteca/json/autores.json"));) {
                 autores.write(jsonStringAutores);
@@ -432,9 +433,28 @@ public class BibliotecaController {
             }
             //CREO JSON DE CLIENTES
             try (PrintWriter clientes = new PrintWriter(new File("./src/main/java/com/ejer_poo/biblioteca/json/clientes.json"));){
+                JsonArray listaObjetosClientes = new JsonArray();
+                for (Cliente cliente : listaClientes) {
+                    int id = cliente.getId();
+                    String nombre = cliente.getNombre();
+                    String apellido1 = cliente.getApellido1();
+                    String apellido2 = cliente.getApellido2();
+                    String email = cliente.getEmail();
+                    JsonObject objeto = new JsonObject();
+                    objeto.addProperty("id", id);
+                    objeto.addProperty("nombre", nombre);
+                    objeto.addProperty("apellido1", apellido1);
+                    objeto.addProperty("apellido2", apellido2);
+                    objeto.addProperty("email", email);
+                    String books = gson.toJson(cliente.books());
+                    objeto.addProperty("listaLibrosPrestados", books);
+                    listaObjetosClientes.add(objeto);
+                }
+                String jsonStringClientes = gson.toJson(listaObjetosClientes);
                 clientes.write(jsonStringClientes);
             } catch (Exception e) {
                 System.out.println("ERROR");
+                e.printStackTrace();
             }
             //CREO JSON DE LIBROS
             try {

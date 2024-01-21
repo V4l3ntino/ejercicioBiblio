@@ -2,17 +2,17 @@
   {
     "id": 19,
     "nombre": "defaultUser",
-    "listaLibrosPrestados": []
+    "listaLibrosPrestados": "[]"
   },
   {
     "id": 445,
     "nombre": "Paco",
-    "listaLibrosPrestados": []
+    "listaLibrosPrestados": "[\n  \"peras\",\n  \"manzanas\",\n  \"melones\"\n]"
   },
   {
     "id": 303,
     "nombre": "German",
-    "listaLibrosPrestados": []
+    "listaLibrosPrestados": "[]"
   },
   {
     "id": 228,
@@ -20,7 +20,7 @@
     "apellido1": "Manuel",
     "apellido2": "Gomez",
     "email": "jsoe@email",
-    "listaLibrosPrestados": []
+    "listaLibrosPrestados": "[]"
   },
   {
     "id": 895,
@@ -28,6 +28,6 @@
     "apellido1": "Hontar",
     "apellido2": "Dos",
     "email": "valen@email",
-    "listaLibrosPrestados": []
+    "listaLibrosPrestados": "[]"
   }
 ]
