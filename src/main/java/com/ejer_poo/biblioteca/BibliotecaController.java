@@ -419,51 +419,59 @@ public class BibliotecaController {
 
     }
     public void crearJson(){
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonStringAutores = gson.toJson(listaAutores);
-        String jsonStringClientes = gson.toJson(listaClientes);
-        // CREO EL ARCHIVO JSON DE AUTORES
-        System.out.println(jsonStringAutores);
-        try (PrintWriter autores = new PrintWriter(new File("./src/main/java/com/ejer_poo/biblioteca/json/autores.json"));) {
-            autores.write(jsonStringAutores);
-            
-        } catch (Exception e) {
-            System.out.println("ERROR");
-        }
-        //CREO JSON DE CLIENTES
-        try (PrintWriter clientes = new PrintWriter(new File("./src/main/java/com/ejer_poo/biblioteca/json/clientes.json"));){
-            clientes.write(jsonStringClientes);
-        } catch (Exception e) {
-            System.out.println("ERROR");
-        }
-        //CREO JSON DE LIBROS
         try {
-            FileWriter file = new FileWriter("./src/main/java/com/ejer_poo/biblioteca/json/libros.json");
-            JsonArray listaObjetos = new JsonArray();
-            for (Libro libro : listaLibros) {
-                int codigo = libro.getCodigo();
-                String titulo = libro.getTitulo();
-                int idAutor = libro.getAutor().getId();
-                int anio = libro.getAño();
-                boolean prestado = libro.getPrestado();
-                int idCliente = libro.getPrestador().getId();
-                JsonObject objeto = new JsonObject();
-                objeto.addProperty("codigo", codigo);
-                objeto.addProperty("titulo", titulo);
-                objeto.addProperty("autor", idAutor);
-                objeto.addProperty("año", anio);
-                objeto.addProperty("prestado", prestado);
-                if(prestado == true){
-                    objeto.addProperty("prestador", idCliente);
-                }
-                listaObjetos.add(objeto);
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            String jsonStringAutores = gson.toJson(listaAutores);
+            String jsonStringClientes = gson.toJson(listaClientes);
+            // CREO EL ARCHIVO JSON DE AUTORES
+            try (PrintWriter autores = new PrintWriter(new File("./src/main/java/com/ejer_poo/biblioteca/json/autores.json"));) {
+                autores.write(jsonStringAutores);
+                
+            } catch (Exception e) {
+                System.out.println("ERROR");
             }
-            String jsonStringLibros = gson.toJson(listaObjetos);
-            file.write(jsonStringLibros);
-            file.flush();
-            file.close();
+            //CREO JSON DE CLIENTES
+            try (PrintWriter clientes = new PrintWriter(new File("./src/main/java/com/ejer_poo/biblioteca/json/clientes.json"));){
+                clientes.write(jsonStringClientes);
+            } catch (Exception e) {
+                System.out.println("ERROR");
+            }
+            //CREO JSON DE LIBROS
+            try {
+                FileWriter file = new FileWriter("./src/main/java/com/ejer_poo/biblioteca/json/libros.json");
+                JsonArray listaObjetos = new JsonArray();
+                for (Libro libro : listaLibros) {
+                    int codigo = libro.getCodigo();
+                    String titulo = libro.getTitulo();
+                    int idAutor = libro.getAutor().getId();
+                    int anio = libro.getAño();
+                    boolean prestado = libro.getPrestado();
+                    int idCliente = libro.getPrestador().getId();
+                    JsonObject objeto = new JsonObject();
+                    objeto.addProperty("codigo", codigo);
+                    objeto.addProperty("titulo", titulo);
+                    objeto.addProperty("autor", idAutor);
+                    objeto.addProperty("año", anio);
+                    objeto.addProperty("prestado", prestado);
+                    if(prestado == true){
+                        objeto.addProperty("prestador", idCliente);
+                    }
+                    listaObjetos.add(objeto);
+                }
+                String jsonStringLibros = gson.toJson(listaObjetos);
+                file.write(jsonStringLibros);
+                file.flush();
+                file.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            //MUESTRO RESULTADO EN EL OUTPUT
+            System.out.println();
+            System.out.println("DATOS GUARDADOS CORRECTAMENTE");
 
         } catch (Exception e) {
+            System.err.println("ALGO HA SALIDO MAL");
             e.printStackTrace();
         }
     }

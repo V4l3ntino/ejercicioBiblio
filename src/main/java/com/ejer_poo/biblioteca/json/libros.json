@@ -52,5 +52,19 @@
     "año": 1982,
     "prestado": true,
     "prestador": 228
+  },
+  {
+    "codigo": 368,
+    "titulo": "SUPERLIBRO-3",
+    "autor": 949,
+    "año": 2092,
+    "prestado": false
+  },
+  {
+    "codigo": 16,
+    "titulo": "SUPERLIBRO99",
+    "autor": 233,
+    "año": 2918,
+    "prestado": false
   }
 ]
