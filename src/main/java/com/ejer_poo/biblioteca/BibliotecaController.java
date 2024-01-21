@@ -434,6 +434,7 @@ public class BibliotecaController {
             //CREO JSON DE CLIENTES
             try (PrintWriter clientes = new PrintWriter(new File("./src/main/java/com/ejer_poo/biblioteca/json/clientes.json"));){
                 JsonArray listaObjetosClientes = new JsonArray();
+                Gson gson2 = new Gson();
                 for (Cliente cliente : listaClientes) {
                     int id = cliente.getId();
                     String nombre = cliente.getNombre();
@@ -446,7 +447,7 @@ public class BibliotecaController {
                     objeto.addProperty("apellido1", apellido1);
                     objeto.addProperty("apellido2", apellido2);
                     objeto.addProperty("email", email);
-                    String books = gson.toJson(cliente.books());
+                    String books = gson2.toJson(cliente.books());
                     objeto.addProperty("listaLibrosPrestados", books);
                     listaObjetosClientes.add(objeto);
                 }

@@ -7,7 +7,7 @@
   {
     "id": 445,
     "nombre": "Paco",
-    "listaLibrosPrestados": "[\n  \"peras\",\n  \"manzanas\",\n  \"melones\"\n]"
+    "listaLibrosPrestados": "[\"peras\",\"melones\"]"
   },
   {
     "id": 303,
