@@ -44,8 +44,7 @@
     "titulo": "cosas2",
     "autor": 233,
     "año": 1999,
-    "prestado": true,
-    "prestador": 78
+    "prestado": false
   },
   {
     "codigo": 319,
@@ -54,5 +53,13 @@
     "año": 1997,
     "prestado": true,
     "prestador": 78
+  },
+  {
+    "codigo": 206,
+    "titulo": "LibroPrueba",
+    "autor": 9,
+    "año": 2012,
+    "prestado": true,
+    "prestador": 228
   }
 ]

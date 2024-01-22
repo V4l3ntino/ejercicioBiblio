@@ -93,7 +93,7 @@ public class Autor {
     }
     @Override
     public String toString() {
-        return "%d = %s".formatted(id,nombre1)+"Libros "+books();
+        return "%d = %s".formatted(id,getFullName())+" Libros: "+books();
     }
 
 }

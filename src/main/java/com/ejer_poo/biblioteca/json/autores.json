@@ -26,5 +26,12 @@
     "apellido1": "paquito",
     "apellido2": "jimenez",
     "email": "paco@email"
+  },
+  {
+    "id": 9,
+    "nombre1": "AutorPrueba",
+    "apellido1": "a",
+    "apellido2": "a",
+    "email": "a"
   }
 ]
