@@ -67,7 +67,16 @@ public class Cliente {
     }
 
     public void setLibroPrestado(Libro libroPrestado) {
-        listaLibrosPrestados.add(libroPrestado);
+        if (libroPrestado != null) {
+            listaLibrosPrestados.add(libroPrestado);
+        }
+    }
+    public void setDevolverLibro(Libro libro){
+        for (int i = 0; i < listaLibrosPrestados.size(); i++) {
+            if (listaLibrosPrestados.get(i).getCodigo() == libro.getCodigo()) {
+                listaLibrosPrestados.remove(i);
+            }
+        }
     }
     public ArrayList booksId(){
         ArrayList <Integer> libros = new ArrayList<>();

@@ -11,7 +11,8 @@
     "titulo": "Reina Roja",
     "autor": 233,
     "año": 2018,
-    "prestado": false
+    "prestado": true,
+    "prestador": 939
   },
   {
     "codigo": 44,
@@ -41,7 +42,8 @@
     "titulo": "SUPERLIBRO",
     "autor": 949,
     "año": 20000,
-    "prestado": false
+    "prestado": true,
+    "prestador": 939
   },
   {
     "codigo": 361,

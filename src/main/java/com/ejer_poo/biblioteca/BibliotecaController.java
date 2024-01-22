@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Properties;
 import java.util.Scanner;
@@ -48,6 +49,7 @@ public class BibliotecaController {
         this.leerJsonAutor().stream().forEach((i) -> this.listaAutores.add(i));
         this.leerJsonCliente().stream().forEach((i) -> this.listaClientes.add(i));
         this.leerJsonLibro().stream().forEach((i) -> this.listaLibros.add(i));
+        this.leerJsonDependencias();
         this.nombre = nombre;
     }
 
@@ -71,7 +73,8 @@ public class BibliotecaController {
     public void devolverLibro(Libro libro) {
         if (libro.getPrestado().equals(true)) {
             libro.setPrestado(false);
-            libro.setPrestador(null);
+            libro.setQuitarPrestador();
+            clienteG.setDevolverLibro(libro);
         }
         
     }
@@ -314,6 +317,9 @@ public class BibliotecaController {
             this.addLibro(libro);
         }
     }
+
+    //LECTURA DE DATOS
+    //------------------------------------------------------------------------------------------------------------//
     public ArrayList<Autor> leerJsonAutor(){
         File input = new File("./src/main/java/com/ejer_poo/biblioteca/json/autores.json");
         ArrayList<Autor> listaDeAutores = new ArrayList<>(); 
@@ -417,7 +423,6 @@ public class BibliotecaController {
         // Type clienteType = new TypeToken<ArrayList<Cliente>>() {}.getType();
         // ArrayList<Cliente> lista = gson.fromJson(json, clienteType);
         // return lista;
-        System.out.println("LEER LOS CLIENTES");
         File input = new File("./src/main/java/com/ejer_poo/biblioteca/json/clientes.json");
         ArrayList<Cliente> listaDeClientes = new ArrayList<>();
         try {
@@ -439,6 +444,54 @@ public class BibliotecaController {
         }
         return listaDeClientes;
     }
+    public void leerJsonDependencias(){
+        //CLIENTES
+        File input = new File("./src/main/java/com/ejer_poo/biblioteca/json/clientes.json");
+        try {
+            JsonElement elemento = JsonParser.parseReader(new FileReader(input));
+            JsonArray listaObjetos = elemento.getAsJsonArray();
+            for (JsonElement element : listaObjetos) {
+                JsonObject objeto = element.getAsJsonObject();
+                int idCliente = objeto.get("id").getAsInt();
+                boolean boleano = objeto.get("boolean").getAsBoolean();
+                if (boleano != false) {
+                    String lista = objeto.get("listaLibrosPrestados").getAsString();
+                    String listaRegex = lista.replaceAll("\\[|\\]", "");
+                    ArrayList<String> listaLibrosString = new ArrayList<String>(Arrays.asList(listaRegex.split(",")));
+                    for (Cliente clientePrestador : listaClientes) {
+                        if (clientePrestador.getId() == idCliente) {
+                            try {
+                                for (int i = 0; i < listaLibrosString.size(); i++) {
+                                    Integer idBook = Integer.parseInt(listaLibrosString.get(i));
+                                    for (Libro libro : listaLibros) {
+                                        if (libro.getCodigo() == idBook) {
+                                            clientePrestador.setLibroPrestado(libro);
+                                        }
+                                    }
+                                }
+                            } catch (Exception e) {
+                                System.err.println("ERROR AL PASAR A ENTERO EL ID DE LA LISTA DE LIBROS-PRESTADOS");
+                                e.printStackTrace();
+                            }
+                        }
+                    } 
+                }
+
+
+                // System.out.println(idCliente + listaLibrosPrestados.toString());
+                // for (Cliente cliente : listaClientes) {
+                //     if (cliente.getId() == idCliente) {
+                //         System.out.println("EL CLIENTE ES "+cliente.getNombre());
+                //     }
+                // }
+            }
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+    }
+
+    //ESCRITURA DE DATOS
+    //-------------------------------------------------------------------------------------------------------------------//
     public void crearJson(){
         try {
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -467,8 +520,13 @@ public class BibliotecaController {
                     objeto.addProperty("apellido1", apellido1);
                     objeto.addProperty("apellido2", apellido2);
                     objeto.addProperty("email", email);
-                    String books = gson2.toJson(cliente.booksId());
-                    objeto.addProperty("listaLibrosPrestados", books);
+                    if (cliente.booksId().size() != 0) {
+                         objeto.addProperty("boolean", true);
+                         String books = gson2.toJson(cliente.booksId());
+                         objeto.addProperty("listaLibrosPrestados", books);
+                    }else{
+                        objeto.addProperty("boolean", false);
+                    }
                     listaObjetosClientes.add(objeto);
                 }
                 String jsonStringClientes = gson.toJson(listaObjetosClientes);
@@ -487,7 +545,6 @@ public class BibliotecaController {
                     int idAutor = libro.getAutor().getId();
                     int anio = libro.getAño();
                     boolean prestado = libro.getPrestado();
-                    int idCliente = libro.getPrestador().getId();
                     JsonObject objeto = new JsonObject();
                     objeto.addProperty("codigo", codigo);
                     objeto.addProperty("titulo", titulo);
@@ -495,6 +552,7 @@ public class BibliotecaController {
                     objeto.addProperty("año", anio);
                     objeto.addProperty("prestado", prestado);
                     if(prestado == true){
+                        int idCliente = libro.getPrestador().getId();
                         objeto.addProperty("prestador", idCliente);
                     }
                     listaObjetos.add(objeto);
@@ -564,31 +622,39 @@ public class BibliotecaController {
         }
     }
     public void caso8(){
-        this.listarLibros();
-        System.out.print("[*] Introduzca el título: ");
-                String nombreLibro = System.console().readLine();
-                //validarLibro
-                boolean auxiliar = validarLibro(nombreLibro);
-                if (auxiliar == true) {
-                    for (Libro libro : listaLibros) {
-                        if (libro.getTitulo().equals(nombreLibro)) {
-                            if (libro.getPrestado() == true) {
-                                this.devolverLibro(libro);
-                                System.out.println();
-                                System.out.println("[+] El libro se ha devuelto correctamente");
-                            }else{
-                                System.out.println();
-                                System.out.println("[-] El libro no ha sido prestado aún");
-                                System.out.println();
-                            }
-                            break;
+        this.listarClientes();
+        System.out.print("Introduce el nombre del cliente: ");
+        String clienteInput = System.console().readLine();
+        //validar cliente
+        boolean aux = validarCliente(clienteInput);
+        if (aux == true) {
+            System.out.print("[*] Introduzca el título: ");
+            String nombreLibro = System.console().readLine();
+            //validarLibro
+            boolean auxiliar = validarLibro(nombreLibro);
+            if (auxiliar == true) {
+                for (Libro libro : listaLibros) {
+                    if (libro.getTitulo().equals(nombreLibro)) {
+                        if (libro.getPrestado() == true) {
+                            this.devolverLibro(libro);
+                            System.out.println();
+                            System.out.println("[+] El libro se ha devuelto correctamente");
+                        }else{
+                            System.out.println();
+                            System.out.println("[-] El libro no ha sido prestado aún");
+                            System.out.println();
                         }
+                        break;
                     }
-                }else{
-                    System.out.println();
-                    System.out.println("[-] El libro no existe");
-                    System.out.println();
                 }
+            }else{
+                System.out.println();
+                System.out.println("[-] El libro no existe");
+                System.out.println();
+            }
+        } else {
+            System.out.println("[-] EL CLIENTE NO EXISTE");
+        }
     }
     public void consultar(){
         this.listarLibros();

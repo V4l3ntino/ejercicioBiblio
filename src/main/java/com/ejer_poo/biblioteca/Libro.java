@@ -7,7 +7,7 @@ public class Libro {
     private Cliente prestador;
     private int año;
     private Boolean prestado;
-    public Cliente cliente = new Cliente();
+
 
     public Libro () {};
 
@@ -64,11 +64,12 @@ public class Libro {
     }
 
     public void setPrestador(Cliente prestador) {
-        if (prestador == null) {
-            this.prestador = cliente;
-        } else {
+        if (prestador != null) {
             this.prestador = prestador;
         }
+    }
+    public void setQuitarPrestador(){
+        this.prestador = null;
     }
     public Cliente getPrestador() {
         return prestador;
