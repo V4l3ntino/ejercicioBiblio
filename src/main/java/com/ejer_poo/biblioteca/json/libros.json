@@ -4,7 +4,8 @@
     "titulo": "peras",
     "autor": 949,
     "año": 2001,
-    "prestado": false
+    "prestado": true,
+    "prestador": 228
   },
   {
     "codigo": 259,
@@ -35,13 +36,23 @@
     "titulo": "cosas",
     "autor": 233,
     "año": 2000,
-    "prestado": false
+    "prestado": true,
+    "prestador": 78
   },
   {
     "codigo": 187,
     "titulo": "cosas2",
     "autor": 233,
     "año": 1999,
-    "prestado": false
+    "prestado": true,
+    "prestador": 78
+  },
+  {
+    "codigo": 319,
+    "titulo": "LIBROPACO",
+    "autor": 408,
+    "año": 1997,
+    "prestado": true,
+    "prestador": 78
   }
 ]

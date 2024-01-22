@@ -94,7 +94,7 @@ public class Cliente {
     }
     @Override
     public String toString() {
-        return "%d = %s".formatted(id,nombre)+"LIBROS "+ books();
+        return "%d = %s".formatted(id,nombre)+" Libros-prestados: "+ books();
     }
 
 }

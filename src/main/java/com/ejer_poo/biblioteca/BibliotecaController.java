@@ -448,7 +448,7 @@ public class BibliotecaController {
     public void leerJsonDependencias(){
         //CLIENTES
         File input = new File("./src/main/java/com/ejer_poo/biblioteca/json/clientes.json");
-        File input2 = new File("./src/main/java/com/ejer_poo/biblioteca/json/autores.json");
+        // File input2 = new File("./src/main/java/com/ejer_poo/biblioteca/json/autores.json");
         try {
             JsonElement elemento = JsonParser.parseReader(new FileReader(input));
             JsonArray listaObjetos = elemento.getAsJsonArray();
@@ -480,42 +480,43 @@ public class BibliotecaController {
                 }
             }
         } catch (Exception e) {
-            // TODO: handle exception
+            System.err.println("ALGO HA SALIDO MAL AL LEER LAS DEPENDENCIAS");
+            e.printStackTrace();
         }
-        //AUTORES
-        try {
-            JsonElement elemento = JsonParser.parseReader(new FileReader(input2));
-            JsonArray listaObjetos = elemento.getAsJsonArray();
-            for (JsonElement element : listaObjetos) {
-                JsonObject objeto = element.getAsJsonObject();
-                int idAutor = objeto.get("id").getAsInt();
-                boolean boleano = objeto.get("boolean").getAsBoolean();
-                if (boleano != false) {
-                    String lista = objeto.get("listaLibros").getAsString();
-                    String listaRegex = lista.replaceAll("\\[|\\]", "");
-                    ArrayList<String> listaLibrosString = new ArrayList<String>(Arrays.asList(listaRegex.split(",")));
-                    for (Autor autorLibro : listaAutores) {
-                        if (autorLibro.getId() == idAutor) {
-                            try {
-                                for (int i = 0; i < listaLibrosString.size(); i++) {
-                                    Integer idBook = Integer.parseInt(listaLibrosString.get(i));
-                                    for (Libro libro : listaLibros) {
-                                        if (libro.getCodigo() == idBook) {
-                                            autorLibro.setLibros(libro);
-                                        }
-                                    }
-                                }
-                            } catch (Exception e) {
-                                System.err.println("ERROR AL PASAR A ENTERO EL ID DE LA LISTA DE LIBROS-PRESTADOS");
-                                e.printStackTrace();
-                            }
-                        }
-                    } 
-                }
-            }
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+        // //AUTORES
+        // try {
+        //     JsonElement elemento = JsonParser.parseReader(new FileReader(input2));
+        //     JsonArray listaObjetos = elemento.getAsJsonArray();
+        //     for (JsonElement element : listaObjetos) {
+        //         JsonObject objeto = element.getAsJsonObject();
+        //         int idAutor = objeto.get("id").getAsInt();
+        //         boolean boleano = objeto.get("boolean").getAsBoolean();
+        //         if (boleano != false) {
+        //             String lista = objeto.get("listaLibros").getAsString();
+        //             String listaRegex = lista.replaceAll("\\[|\\]", "");
+        //             ArrayList<String> listaLibrosString = new ArrayList<String>(Arrays.asList(listaRegex.split(",")));
+        //             for (Autor autorLibro : listaAutores) {
+        //                 if (autorLibro.getId() == idAutor) {
+        //                     try {
+        //                         for (int i = 0; i < listaLibrosString.size(); i++) {
+        //                             Integer idBook = Integer.parseInt(listaLibrosString.get(i));
+        //                             for (Libro libro : listaLibros) {
+        //                                 if (libro.getCodigo() == idBook) {
+        //                                     autorLibro.setLibros(libro);
+        //                                 }
+        //                             }
+        //                         }
+        //                     } catch (Exception e) {
+        //                         System.err.println("ERROR AL LEER DEPENDENCAIS DE AUTORES");
+        //                         e.printStackTrace();
+        //                     }
+        //                 }
+        //             } 
+        //         }
+        //     }
+        // } catch (Exception e) {
+        //     // TODO: handle exception
+        // }
     }
 
     //ESCRITURA DE DATOS
@@ -527,7 +528,6 @@ public class BibliotecaController {
             // CREO EL ARCHIVO JSON DE AUTORES
             try (PrintWriter autores = new PrintWriter(new File("./src/main/java/com/ejer_poo/biblioteca/json/autores.json"));){
                 JsonArray listaObjetosAutores = new JsonArray();
-                Gson gson2 = new Gson();
                 for (Autor autor : listaAutores) {
                     int id = autor.getId();
                     String nombre = autor.getNombre1();
@@ -540,13 +540,13 @@ public class BibliotecaController {
                     objeto.addProperty("apellido1", apellido1);
                     objeto.addProperty("apellido2", apellido2);
                     objeto.addProperty("email", email);
-                    if (autor.booksId().size() != 0) {
-                         objeto.addProperty("boolean", true);
-                         String books = gson2.toJson(autor.booksId());
-                         objeto.addProperty("listaLibros", books);
-                    }else{
-                        objeto.addProperty("boolean", false);
-                    }
+                    // if (autor.booksId().size() != 0) {
+                    //      objeto.addProperty("boolean", true);
+                    //      String books = gson2.toJson(autor.booksId());
+                    //      objeto.addProperty("listaLibros", books);
+                    // }else{
+                    //     objeto.addProperty("boolean", false);
+                    // }
                     listaObjetosAutores.add(objeto);
                 }
                 String jsonStringAutores = gson.toJson(listaObjetosAutores);
@@ -679,6 +679,7 @@ public class BibliotecaController {
         //validar cliente
         boolean aux = validarCliente(clienteInput);
         if (aux == true) {
+            this.listarLibros();
             System.out.print("[*] Introduzca el título: ");
             String nombreLibro = System.console().readLine();
             //validarLibro
