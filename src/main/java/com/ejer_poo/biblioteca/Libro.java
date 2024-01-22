@@ -8,14 +8,16 @@ public class Libro {
     private int año;
     private Boolean prestado;
 
+
     public Libro () {};
 
-    public Libro(String titulo, Autor autor, int año) {
+    public Libro(String titulo, Autor autor, int año, Boolean prestado, Cliente prestador) {
         setCodigo();
         setTitulo(titulo);
         setAutor(autor);
         setAño(año);
-        setPrestado(false);
+        setPrestado(prestado);
+        setPrestador(prestador);
     }
 
     public int getCodigo() {
@@ -24,6 +26,10 @@ public class Libro {
 
     public void setCodigo() {
         this.codigo = Utilidades.generarCodigoLibro();
+    }
+
+    public void setCodigManual(int id){
+        this.codigo = id;
     }
 
     public String getTitulo() {
@@ -58,12 +64,23 @@ public class Libro {
     }
 
     public void setPrestador(Cliente prestador) {
-        this.prestador = prestador;
+        if (prestador != null) {
+            this.prestador = prestador;
+        }
+    }
+    public void setQuitarPrestador(){
+        this.prestador = null;
     }
     public Cliente getPrestador() {
         return prestador;
     }
-    public void imprimir() {
-        
+    @Override
+    public String toString() {
+        String estadoLibro = "[-] NO PRESTADO";
+        if (prestado != false) {
+            estadoLibro = "[+] PRESTADO";
+        }
+        return "LL%d -     %s (%d) - %s ESTADO: %s".formatted( codigo,titulo,año,autor.getNombre1(),estadoLibro);
     }
+
 }

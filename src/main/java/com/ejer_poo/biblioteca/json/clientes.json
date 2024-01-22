@@ -1,0 +1,20 @@
+[
+  {
+    "id": 228,
+    "nombre": "JoseManuel",
+    "apellido1": "Manuel",
+    "apellido2": "Gomez",
+    "email": "jsoe@email",
+    "boolean": true,
+    "listaLibrosPrestados": "[259,87]"
+  },
+  {
+    "id": 78,
+    "nombre": "pepe",
+    "apellido1": "garcia",
+    "apellido2": "perez",
+    "email": "pepe@pepe",
+    "boolean": true,
+    "listaLibrosPrestados": "[358,386,319,187,949]"
+  }
+]
