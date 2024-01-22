@@ -406,18 +406,38 @@ public class BibliotecaController {
         return listaDeLibros;
     }
     public ArrayList<Cliente> leerJsonCliente(){
-        Gson gson = new Gson();
-        String rutaFile = "src/main/java/com/ejer_poo/biblioteca/json/clientes.json";
-        String json = "";
+        // Gson gson = new Gson();
+        // String rutaFile = "src/main/java/com/ejer_poo/biblioteca/json/clientes.json";
+        // String json = "";
+        // try {
+        //     json = Files.readString(Paths.get(rutaFile));
+        // } catch (Exception e) {
+        //     System.out.println(e);
+        // }
+        // Type clienteType = new TypeToken<ArrayList<Cliente>>() {}.getType();
+        // ArrayList<Cliente> lista = gson.fromJson(json, clienteType);
+        // return lista;
+        System.out.println("LEER LOS CLIENTES");
+        File input = new File("./src/main/java/com/ejer_poo/biblioteca/json/clientes.json");
+        ArrayList<Cliente> listaDeClientes = new ArrayList<>();
         try {
-            json = Files.readString(Paths.get(rutaFile));
+            JsonElement elemento = JsonParser.parseReader(new FileReader(input));
+            JsonArray listaObjetos = elemento.getAsJsonArray();
+            for (JsonElement element : listaObjetos) {
+                JsonObject objeto = element.getAsJsonObject();
+                int id = objeto.get("id").getAsInt();
+                String name = objeto.get("nombre").getAsString();
+                String surname1 = objeto.get("apellido1").getAsString();
+                String surname2 = objeto.get("apellido2").getAsString();
+                String email = objeto.get("email").getAsString();
+                clienteG = new Cliente(name, surname1, surname2, email);
+                clienteG.setIdManual(id);
+                listaDeClientes.add(clienteG);
+            }
         } catch (Exception e) {
-            System.out.println(e);
+            // TODO: handle exception
         }
-        Type clienteType = new TypeToken<ArrayList<Cliente>>() {}.getType();
-        ArrayList<Cliente> lista = gson.fromJson(json, clienteType);
-        return lista;
-
+        return listaDeClientes;
     }
     public void crearJson(){
         try {
@@ -447,7 +467,7 @@ public class BibliotecaController {
                     objeto.addProperty("apellido1", apellido1);
                     objeto.addProperty("apellido2", apellido2);
                     objeto.addProperty("email", email);
-                    String books = gson2.toJson(cliente.books());
+                    String books = gson2.toJson(cliente.booksId());
                     objeto.addProperty("listaLibrosPrestados", books);
                     listaObjetosClientes.add(objeto);
                 }

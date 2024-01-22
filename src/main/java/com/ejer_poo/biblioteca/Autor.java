@@ -77,4 +77,10 @@ public class Autor {
     public String getNombreCita() {
         return "";
     }
+
+    @Override
+    public String toString() {
+        return "%d = %s".formatted(id,nombre1);
+    }
+
 }

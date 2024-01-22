@@ -15,7 +15,7 @@ public class Cliente {
     public Cliente(){};
 
     public Cliente(String nombre, String apellido1, String apellido2, String email) {
-        setId();
+        this.setId();
         this.nombre = nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
@@ -23,6 +23,9 @@ public class Cliente {
     }
     public void setId() {
         this.id = Utilidades.generarCodigoLibro();
+    }
+    public void setIdManual(int id){
+        this.id =  id;
     }
     public int getId() {
         return id;
@@ -65,6 +68,13 @@ public class Cliente {
 
     public void setLibroPrestado(Libro libroPrestado) {
         listaLibrosPrestados.add(libroPrestado);
+    }
+    public ArrayList booksId(){
+        ArrayList <Integer> libros = new ArrayList<>();
+        for (Libro libro : listaLibrosPrestados) {
+            libros.add(libro.getCodigo());
+        }
+        return libros;
     }
     public ArrayList books(){
         ArrayList <String> libros = new ArrayList<>();

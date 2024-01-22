@@ -11,16 +11,14 @@
     "titulo": "Reina Roja",
     "autor": 233,
     "año": 2018,
-    "prestado": true,
-    "prestador": 445
+    "prestado": false
   },
   {
     "codigo": 44,
     "titulo": "manzanas",
     "autor": 949,
     "año": 2001,
-    "prestado": true,
-    "prestador": 445
+    "prestado": false
   },
   {
     "codigo": 23,
@@ -28,7 +26,7 @@
     "autor": 949,
     "año": 2001,
     "prestado": true,
-    "prestador": 445
+    "prestador": 939
   },
   {
     "codigo": 95,
@@ -36,23 +34,21 @@
     "autor": 949,
     "año": 2001,
     "prestado": true,
-    "prestador": 445
+    "prestador": 939
   },
   {
     "codigo": 153,
     "titulo": "SUPERLIBRO",
     "autor": 949,
     "año": 20000,
-    "prestado": true,
-    "prestador": 445
+    "prestado": false
   },
   {
     "codigo": 361,
     "titulo": "SUPERLIBRO-2",
     "autor": 949,
     "año": 1982,
-    "prestado": true,
-    "prestador": 228
+    "prestado": false
   },
   {
     "codigo": 368,
