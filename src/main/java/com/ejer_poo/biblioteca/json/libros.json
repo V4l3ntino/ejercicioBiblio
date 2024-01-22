@@ -1,69 +1,47 @@
 [
   {
-    "codigo": 812,
-    "titulo": "El señor de los anillos",
-    "autor": 800,
-    "año": 1957,
-    "prestado": false
-  },
-  {
-    "codigo": 913,
-    "titulo": "Reina Roja",
-    "autor": 233,
-    "año": 2018,
-    "prestado": true,
-    "prestador": 939
-  },
-  {
-    "codigo": 44,
-    "titulo": "manzanas",
-    "autor": 949,
-    "año": 2001,
-    "prestado": false
-  },
-  {
-    "codigo": 23,
+    "codigo": 87,
     "titulo": "peras",
     "autor": 949,
     "año": 2001,
-    "prestado": true,
-    "prestador": 939
+    "prestado": false
   },
   {
-    "codigo": 95,
+    "codigo": 259,
+    "titulo": "manzanas",
+    "autor": 949,
+    "año": 0,
+    "prestado": true,
+    "prestador": 228
+  },
+  {
+    "codigo": 386,
     "titulo": "melones",
     "autor": 949,
-    "año": 2001,
+    "año": 1992,
     "prestado": true,
-    "prestador": 939
+    "prestador": 78
   },
   {
-    "codigo": 153,
-    "titulo": "SUPERLIBRO",
+    "codigo": 358,
+    "titulo": "sandias",
     "autor": 949,
-    "año": 20000,
+    "año": 1998,
     "prestado": true,
-    "prestador": 939
+    "prestador": 78
   },
   {
-    "codigo": 361,
-    "titulo": "SUPERLIBRO-2",
-    "autor": 949,
-    "año": 1982,
-    "prestado": false
-  },
-  {
-    "codigo": 368,
-    "titulo": "SUPERLIBRO-3",
-    "autor": 949,
-    "año": 2092,
-    "prestado": false
-  },
-  {
-    "codigo": 16,
-    "titulo": "SUPERLIBRO99",
+    "codigo": 949,
+    "titulo": "cosas",
     "autor": 233,
-    "año": 2918,
+    "año": 2000,
+    "prestado": false
+  },
+  {
+    "codigo": 187,
+    "titulo": "cosas2",
+    "autor": 233,
+    "año": 1999,
     "prestado": false
   }
 ]

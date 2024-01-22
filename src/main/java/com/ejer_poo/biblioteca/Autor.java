@@ -77,10 +77,23 @@ public class Autor {
     public String getNombreCita() {
         return "";
     }
-
+    public ArrayList booksId(){
+        ArrayList <Integer> libros = new ArrayList<>();
+        for (Libro libro : listaLibros) {
+            libros.add(libro.getCodigo());
+        }
+        return libros;
+    }
+    public ArrayList books(){
+        ArrayList <String> libros = new ArrayList<>();
+        for (Libro libro : listaLibros) {
+            libros.add(libro.getTitulo());
+        }
+        return libros;
+    }
     @Override
     public String toString() {
-        return "%d = %s".formatted(id,nombre1);
+        return "%d = %s".formatted(id,nombre1)+"Libros "+books();
     }
 
 }

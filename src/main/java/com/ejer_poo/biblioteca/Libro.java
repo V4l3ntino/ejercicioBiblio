@@ -74,5 +74,13 @@ public class Libro {
     public Cliente getPrestador() {
         return prestador;
     }
+    @Override
+    public String toString() {
+        String estadoLibro = "[-] NO PRESTADO";
+        if (prestado != false) {
+            estadoLibro = "[+] PRESTADO";
+        }
+        return "LL%d -     %s (%d) - %s ESTADO: %s".formatted( codigo,titulo,año,autor.getNombre1(),estadoLibro);
+    }
 
 }
