@@ -1,10 +1,17 @@
 [
   {
-    "codigo": 686,
-    "titulo": "LibroPaco",
-    "autor": 860,
-    "año": 2020,
+    "codigo": 949,
+    "titulo": "cosas",
+    "autor": 233,
+    "año": 2000,
     "prestado": true,
-    "prestador": 13
+    "prestador": 78
+  },
+  {
+    "codigo": 187,
+    "titulo": "cosas2",
+    "autor": 233,
+    "año": 1999,
+    "prestado": false
   }
 ]

@@ -1,21 +1,13 @@
 package com.ejer_poo.biblioteca;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Properties;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -25,14 +17,6 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
-
-import java.lang.reflect.Type;
-
-import javax.tools.OptionChecker;
-
-import org.json.JSONArray;
-
-import com.google.gson.reflect.TypeToken;
 
 public class BibliotecaController {
     private String nombre;
@@ -60,6 +44,60 @@ public class BibliotecaController {
 
     public void addAutor(Autor autor) {
         this.listaAutores.add(autor);
+    }
+    public void setBorrarAutor(int id){
+        ArrayList<Libro> listaLibrosAutor = new ArrayList<>();
+        ArrayList<Libro> listaLibrosPrestador = new ArrayList<>();
+        for (int i = 0; i < listaAutores.size(); i++) {
+            //VARIABLE I ES EL AUTOR
+            if (listaAutores.get(i).getId() == id) {
+                listaLibrosAutor = listaAutores.get(i).getListaLibros();
+                //Este FOR busca todos los libros del autor
+                for (Libro libro : listaLibrosAutor) {
+                    int idCodigo = libro.getCodigo();
+                    //Este FOR busca y elimina los libros del autor del la lista de libros general
+                    for (int j = 0; j < listaLibros.size(); j++) {
+                        //VARIABLE J SON LOS LIBROS GENERALES
+                        if (listaLibros.get(j).getCodigo() == idCodigo) {
+                            listaLibrosPrestador = listaLibros.get(j).getPrestador().getLibroPrestado();
+                            //Este FOR busca y elimina aquellos libros que van ha ser eliminados de la lista libros asociados a ese cliente
+                            for (int k = 0; k < listaLibrosPrestador.size(); k++) {
+                                //VARIABLE K SON LOS LIBROS ASOCIADOS A UN CLIENTE
+                                if (listaLibrosPrestador.get(k).getCodigo() == idCodigo) {
+                                    listaLibrosPrestador.remove(k);
+                                }
+                            }
+                            listaLibros.remove(j);
+                        }
+                    }
+                }
+                listaAutores.remove(i);
+            }
+        }
+    }
+    public void setBorrarLibro(int codigo){
+        ArrayList<Libro> listaLibroPrestador = new ArrayList<>();
+        ArrayList<Libro> listaLibroAutor = new ArrayList<>();
+        //Este FOR busca y elimina el libro de la lista general de libros
+        for (int i = 0; i < listaLibros.size(); i++) {
+            if (listaLibros.get(i).getCodigo() == codigo) {
+                listaLibroPrestador = listaLibros.get(i).getPrestador().getLibroPrestado();
+                listaLibroAutor = listaLibros.get(i).getAutor().getListaLibros();
+                //Borrar los libros asociados al cliente prestador
+                for (int j = 0; j < listaLibroPrestador.size(); j++) {
+                    if (listaLibroPrestador.get(j).getCodigo() == codigo) {
+                        listaLibroPrestador.remove(j);
+                    }
+                }
+                //Borrar los libros asociados al autor
+                for (int j2 = 0; j2 < listaLibroAutor.size(); j2++) {
+                    if (listaLibroAutor.get(j2).getCodigo() == codigo) {
+                        listaLibroAutor.remove(j2);
+                    }
+                }
+                listaLibros.remove(i);
+            }
+        }
     }
 
     public void prestarLibro(Libro libro) {
@@ -94,6 +132,16 @@ public class BibliotecaController {
             if (cliente.getNombre().equals(nombreCliente)){
                 aux = true;
                 this.clienteG = cliente;
+            }
+        }
+        return aux;
+    }
+    public boolean validarAutor (String nombreAutor){
+        boolean aux = false;
+        for (Autor autor : listaAutores){
+            if (autor.getNombre1().equals(nombreAutor)){
+                aux = true;
+                this.autorG = autor;
             }
         }
         return aux;
@@ -751,7 +799,49 @@ public class BibliotecaController {
         System.out.println(clienteValor.toString());
         System.out.println("--------------------------------");
     }
-
+    public void borrarAutor(){
+        this.listarAutores();;
+        System.out.print("Introduzca el nombre del autor: ");
+        String nombreAutor = System.console().readLine();
+        boolean aux = validarAutor(nombreAutor);
+        if (aux == true) {
+            int idAutor = autorG.getId();
+            setBorrarAutor(idAutor);
+            System.out.println("EL AUTOR SE HA BORRADO CORRECTAMENTE");
+        }else{
+            System.out.println("EL AUTOR NO EXISTE");
+        }
+    }
+    public void borrarLibro(){
+        this.listarLibros();
+        System.out.print("Introduzca el nombre del Libro: ");
+        String nombreLibro = System.console().readLine();
+        boolean aux = validarLibro(nombreLibro);
+        if (aux == true) {
+            int codigLibro = libroG.getCodigo();
+            setBorrarLibro(codigLibro);
+            System.out.println("EL LIBRO SE HA BORRADO CORRECTAMENTE");
+        }else{
+            System.out.println("EL LIBRO NO EXISTE");
+        }
+    }
+    public void borrarrCliente(){
+        this.listarClientes();
+        System.out.print("Introduzca el nombre del Cliente: ");
+        String nombreCliente = System.console().readLine();
+        boolean aux = validarCliente(nombreCliente);
+        if (aux == true) {
+            int id = clienteG.getId();
+            for (int i = 0; i < listaClientes.size(); i++) {
+                if (listaClientes.get(i).getId() == id) {
+                    listaClientes.remove(i);
+                }
+            }
+            System.out.println("EL LIBRO SE HA BORRADO CORRECTAMENTE");
+        }else{
+            System.out.println("EL LIBRO NO EXISTE");
+        }
+    }
 
     public void menu() {
         System.out.println("""
@@ -768,8 +858,9 @@ public class BibliotecaController {
                 9. Consultar libro prestado
                 10. Cliente con más libros
                 11. Borrar autor
-                12. Borrar cliente
-                13. Exit
+                12. Borrar libro
+                13. Borrar cliente
+                14. Exit
                 """);
         
         System.out.print("Elige una opción: ");
@@ -796,9 +887,10 @@ public class BibliotecaController {
             case "8" -> this.caso8();
             case "9" -> this.consultar();
             case "10" -> this.clienteConMasLibros();
-            // case "11" -> {};
-            // case "12" -> {};
-            case "13" -> {
+            case "11" -> this.borrarAutor();
+            case "12" -> this.borrarLibro();
+            case "13" -> this.borrarrCliente(); 
+            case "14" -> {
                 this.crearJson();
                 System.exit(0);}
             };
