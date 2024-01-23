@@ -4,14 +4,45 @@
     "titulo": "cosas",
     "autor": 233,
     "año": 2000,
-    "prestado": true,
-    "prestador": 78
+    "prestado": false
   },
   {
-    "codigo": 187,
-    "titulo": "cosas2",
-    "autor": 233,
+    "codigo": 135,
+    "titulo": "cosas1",
+    "autor": 408,
     "año": 1999,
     "prestado": false
+  },
+  {
+    "codigo": 938,
+    "titulo": "cosas2",
+    "autor": 408,
+    "año": 1999,
+    "prestado": true,
+    "prestador": 228
+  },
+  {
+    "codigo": 917,
+    "titulo": "Cosas3",
+    "autor": 408,
+    "año": 1999,
+    "prestado": true,
+    "prestador": 228
+  },
+  {
+    "codigo": 989,
+    "titulo": "cosas4",
+    "autor": 408,
+    "año": 1999,
+    "prestado": true,
+    "prestador": 164
+  },
+  {
+    "codigo": 112,
+    "titulo": "cosas5",
+    "autor": 408,
+    "año": 1999,
+    "prestado": true,
+    "prestador": 78
   }
 ]

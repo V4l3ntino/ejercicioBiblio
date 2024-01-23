@@ -254,15 +254,88 @@ public class BibliotecaController {
                 String nombreLibro = System.console().readLine();
                 boolean aux = validarLibro(nombreLibro);
                 if (aux == true) {
-                    clienteG = new Cliente(nombreCliente,ape1,ape2,email);
-                    listaClientes.add(clienteG);
-                    this.prestarLibro(libroG);
-                    System.out.println("EL LIBRO %s SE HA PRESTADO CORRECTAMENTE AL CLIENTE %s".formatted(libroG.getTitulo().toUpperCase(),libroG.getPrestador().getNombre().toUpperCase()));
-                    comprobar = true;
+                    if (libroG.getPrestado() == true) {
+                        System.out.println("ESTE LIBRO ESTA SIENDO PRESTADO AL CLIENTE "+libroG.getPrestador().getNombre().toUpperCase());
+                    }else{
+                        clienteG = new Cliente(nombreCliente,ape1,ape2,email);
+                        listaClientes.add(clienteG);
+                        this.prestarLibro(libroG);
+                        System.out.println("EL LIBRO %s SE HA PRESTADO CORRECTAMENTE AL CLIENTE %s".formatted(libroG.getTitulo().toUpperCase(),libroG.getPrestador().getNombre().toUpperCase()));
+                        comprobar = true;
+                        break;
+                    }
     
                 }else{
                     System.out.println("El libro no existe");
                     this.listarLibros();
+                }
+                boolean auxiliar = false;
+                while (!auxiliar) {
+                    System.out.println("Quiere volver al menu?");
+                    String select = System.console().readLine();
+                    try {
+                        int selection = Integer.parseInt(select);
+                        switch (selection) {
+                            case 1:
+                                comprobar = true;
+                                auxiliar = true;
+                                break;
+                            case 0:
+                                auxiliar = true;
+                                break;
+                            default:
+                                System.out.println();
+                                System.out.println("===========================================");
+                                System.out.println(" SI VAS A RESPONDER EN BINARIO 0=NO, 1=SI");
+                                System.out.println("===========================================");
+                                System.out.println();
+                                auxiliar = false;
+                                break;
+                        }
+                    } catch (Exception e) {
+                        switch (select) {
+                            case "si":
+                                auxiliar = true;
+                                comprobar = true;
+                                break;
+                            case "s":
+                                auxiliar = true;
+                                comprobar = true;
+                                break;
+                            case "no":
+                                auxiliar = true;
+                                break;
+                            case "yes":
+                                auxiliar = true;
+                                comprobar = true;
+                                break;
+                            case "yep":
+                                auxiliar = true;
+                                comprobar = true;
+                                break;
+                            case "y":
+                                auxiliar = true;
+                                comprobar = true;
+                                break;
+                            case "n":
+                                auxiliar = true;
+                                break;
+                            case "nope":
+                                auxiliar = true;
+                                break;
+                            case "nop":
+                            auxiliar = true;
+                            break;
+                            default:
+                                System.out.println();
+                                System.out.println("======================");
+                                System.out.println("  Responde si o no");
+                                System.out.println("======================");
+                                System.out.println();
+                                auxiliar = false;
+                                break;
+                        }
+                    }
                 }
             }
         } else {
@@ -356,6 +429,74 @@ public class BibliotecaController {
                 }else{
                     System.out.println("El cliente no existe");
                     this.listarClientes();
+                }
+                boolean auxiliar = false;
+                while (!auxiliar) {
+                    System.out.println("Quiere volver al menu?");
+                    String select = System.console().readLine();
+                    try {
+                        int selection = Integer.parseInt(select);
+                        switch (selection) {
+                            case 1:
+                                comprobar = true;
+                                auxiliar = true;
+                                break;
+                            case 0:
+                                auxiliar = true;
+                                break;
+                            default:
+                                System.out.println();
+                                System.out.println("===========================================");
+                                System.out.println(" SI VAS A RESPONDER EN BINARIO 0=NO, 1=SI");
+                                System.out.println("===========================================");
+                                System.out.println();
+                                auxiliar = false;
+                                break;
+                        }
+                    } catch (Exception e) {
+                        switch (select) {
+                            case "si":
+                                auxiliar = true;
+                                comprobar = true;
+                                break;
+                            case "s":
+                                auxiliar = true;
+                                comprobar = true;
+                                break;
+                            case "no":
+                                auxiliar = true;
+                                break;
+                            case "yes":
+                                auxiliar = true;
+                                comprobar = true;
+                                break;
+                            case "yep":
+                                auxiliar = true;
+                                comprobar = true;
+                                break;
+                            case "y":
+                                auxiliar = true;
+                                comprobar = true;
+                                break;
+                            case "n":
+                                auxiliar = true;
+                                break;
+                            case "nope":
+                                auxiliar = true;
+                                break;
+                            case "nop":
+                            auxiliar = true;
+                            break;
+                            default:
+                                System.out.println();
+                                System.out.println("======================");
+                                System.out.println("  Responde si o no");
+                                System.out.println("======================");
+                                System.out.println();
+                                auxiliar = false;
+                                break;
+                        }
+                    }
                 }
             }
         } else {
@@ -794,10 +935,27 @@ public class BibliotecaController {
                 clienteValor = cliente;
             }
         }
-        System.out.println("EL CLIENTE CON MAS LIBROS");
-        System.out.println("-----------------------------------");
-        System.out.println(clienteValor.toString());
-        System.out.println("--------------------------------");
+        //COMPROBAR SI HAY MAS DE UN CLIENTE CON LOS MISMO LIBROS PRESTADOS
+        boolean auxiliar = false;
+        ArrayList<Cliente> listaClientesObjetos = new ArrayList<>();
+        for (Cliente objetoCliente : listaClientes) {
+            if (clienteValor.getLibroPrestado().size() == objetoCliente.getLibroPrestado().size()) {
+                if (clienteValor.getNombre() != objetoCliente.getNombre()) {
+                    listaClientesObjetos.add(objetoCliente);
+                    auxiliar = true;
+                }else{
+                    listaClientesObjetos.add(objetoCliente);
+                }
+            }
+        }
+        if (auxiliar == true) {
+            System.out.println("Los clientes con más libros prestados:");
+            listaClientesObjetos.forEach(cliente -> System.out.println(cliente.toString()));
+
+        }else{
+            System.out.println(clienteValor.toString());
+        }
+        
     }
     public void borrarAutor(){
         this.listarAutores();;
@@ -837,9 +995,9 @@ public class BibliotecaController {
                     listaClientes.remove(i);
                 }
             }
-            System.out.println("EL LIBRO SE HA BORRADO CORRECTAMENTE");
+            System.out.println("EL CLIENTE SE HA BORRADO CORRECTAMENTE");
         }else{
-            System.out.println("EL LIBRO NO EXISTE");
+            System.out.println("EL CLIENTE NO EXISTE");
         }
     }
 

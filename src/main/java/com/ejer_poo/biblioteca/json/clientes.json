@@ -5,15 +5,15 @@
     "apellido1": "Manuel",
     "apellido2": "Gomez",
     "email": "jsoe@email",
-    "boolean": false
+    "boolean": true,
+    "listaLibrosPrestados": "[938,917]"
   },
   {
-    "id": 78,
+    "id": 368,
     "nombre": "pepe",
-    "apellido1": "garcia",
-    "apellido2": "perez",
-    "email": "pepe@pepe",
-    "boolean": true,
-    "listaLibrosPrestados": "[949]"
+    "apellido1": "asdf",
+    "apellido2": "asd",
+    "email": "fasdf",
+    "boolean": false
   }
 ]
