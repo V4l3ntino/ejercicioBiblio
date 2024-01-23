@@ -7,31 +7,10 @@
     "email": "tolkien@mail.com"
   },
   {
-    "id": 233,
-    "nombre1": "Juan",
-    "apellido1": "Gomez",
-    "apellido2": "Jurado",
-    "email": "jurado@mail.com"
-  },
-  {
-    "id": 949,
-    "nombre1": "Jose",
-    "apellido1": "manuel",
-    "apellido2": "perez",
-    "email": "manu@email"
-  },
-  {
-    "id": 408,
+    "id": 860,
     "nombre1": "Paco",
-    "apellido1": "paquito",
-    "apellido2": "jimenez",
+    "apellido1": "perez",
+    "apellido2": "garcia",
     "email": "paco@email"
-  },
-  {
-    "id": 9,
-    "nombre1": "AutorPrueba",
-    "apellido1": "a",
-    "apellido2": "a",
-    "email": "a"
   }
 ]

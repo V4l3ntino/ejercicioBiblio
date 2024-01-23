@@ -1,65 +1,10 @@
 [
   {
-    "codigo": 87,
-    "titulo": "peras",
-    "autor": 949,
-    "año": 2001,
+    "codigo": 686,
+    "titulo": "LibroPaco",
+    "autor": 860,
+    "año": 2020,
     "prestado": true,
-    "prestador": 228
-  },
-  {
-    "codigo": 259,
-    "titulo": "manzanas",
-    "autor": 949,
-    "año": 0,
-    "prestado": true,
-    "prestador": 228
-  },
-  {
-    "codigo": 386,
-    "titulo": "melones",
-    "autor": 949,
-    "año": 1992,
-    "prestado": true,
-    "prestador": 78
-  },
-  {
-    "codigo": 358,
-    "titulo": "sandias",
-    "autor": 949,
-    "año": 1998,
-    "prestado": true,
-    "prestador": 78
-  },
-  {
-    "codigo": 949,
-    "titulo": "cosas",
-    "autor": 233,
-    "año": 2000,
-    "prestado": true,
-    "prestador": 78
-  },
-  {
-    "codigo": 187,
-    "titulo": "cosas2",
-    "autor": 233,
-    "año": 1999,
-    "prestado": false
-  },
-  {
-    "codigo": 319,
-    "titulo": "LIBROPACO",
-    "autor": 408,
-    "año": 1997,
-    "prestado": true,
-    "prestador": 78
-  },
-  {
-    "codigo": 206,
-    "titulo": "LibroPrueba",
-    "autor": 9,
-    "año": 2012,
-    "prestado": true,
-    "prestador": 228
+    "prestador": 13
   }
 ]

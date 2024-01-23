@@ -122,7 +122,6 @@ public class BibliotecaController {
         System.out.println();
         System.out.println("\t LISTADO DE CLIENTES");
         System.out.println("========================================");
-        System.out.println("    ID - NOMBRE");
         for (Cliente cliente : listaClientes) {
             System.out.println(cliente.toString());
         }
@@ -737,6 +736,22 @@ public class BibliotecaController {
             System.out.println("El libro no existe");
         }
     }
+    public void clienteConMasLibros(){
+        int aux = 0;
+        Cliente clienteValor = new Cliente();
+        for (Cliente cliente : listaClientes) {
+            int size = cliente.getLibroPrestado().size();
+            if (size > aux) {
+                aux = size;
+                clienteValor = cliente;
+            }
+        }
+        System.out.println("EL CLIENTE CON MAS LIBROS");
+        System.out.println("-----------------------------------");
+        System.out.println(clienteValor.toString());
+        System.out.println("--------------------------------");
+    }
+
 
     public void menu() {
         System.out.println("""
@@ -751,7 +766,10 @@ public class BibliotecaController {
                 7. Prestar libro
                 8. Devolver libro
                 9. Consultar libro prestado
-                10. Exit
+                10. Cliente con más libros
+                11. Borrar autor
+                12. Borrar cliente
+                13. Exit
                 """);
         
         System.out.print("Elige una opción: ");
@@ -777,11 +795,13 @@ public class BibliotecaController {
             case "7" -> this.caso7();
             case "8" -> this.caso8();
             case "9" -> this.consultar();
-            case "10" -> {
+            case "10" -> this.clienteConMasLibros();
+            // case "11" -> {};
+            // case "12" -> {};
+            case "13" -> {
                 this.crearJson();
                 System.exit(0);}
-            
-        }
+            };
         this.menu();
     }
 }
